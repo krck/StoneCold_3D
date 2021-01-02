@@ -13,7 +13,7 @@ StoneCold (2D Game and Engine)
 
 # 1. About
 
-This game is a combination of my (quite old) attempt to write a 3D Graphics Engine [arealGL](https://github.com/krck/arealGL) and my (not that old) attempt to write a 2D Game [StoneCold](https://github.com/krck/StoneCold): StoneCold ... 3D!
+This game is a combination of my (quite old) attempt to write a 3D Graphics Engine [arealGL](https://github.com/krck/arealGL) and my (not that old) attempt to write a 2D Game [StoneCold](https://github.com/krck/StoneCold).
 
 <a name="gdd"/>
 
@@ -21,7 +21,7 @@ This game is a combination of my (quite old) attempt to write a 3D Graphics Engi
 
 ### 2.1 Project Description
  
-StoneCold will be a 3D, top-down, tile-based RPG and comes with its own OpenGL based Engine. The concept is heavily inspired by Diablo (Gameplay aspects), Action-RPGs like Dark Souls (Gameplay aspects), Nuclear Throne (procedural map generation) and many more.
+StoneCold will be a 3D, top-down, "tile-based" RPG and comes with its own OpenGL based Engine. The concept is heavily inspired by Diablo (Gameplay aspects), Action-RPGs like Dark Souls (Gameplay aspects), Nuclear Throne (procedural map generation) and many more.
 
 ### 2.2 Story, Characters and Theme
 
@@ -80,23 +80,18 @@ All Zone and Level progression will be lost, but "corruptions" and skills/stats 
 
 ### 3.2 Architecture and Code Structure
 
-The code is written in C++ 11 (and beyond) and in a object oriented manner. Simplicity (or rather: avoiding complexity) is a main goal. Well. Fingers crossed.
-
-As stated, my basic approach of "i want to build a Engine" has changed for this project and the game/gameplay itself has top priority. Engine reusability, common Render-API, etc. were no factor when it came to the core design and left to SDL2 as much as possible. The result is a thigh coupled structure composed of four projects, that revolve around games resource management, game object creation, game state management, the Entity-Component-Sytem and feeding it all to SDL:
+The code is written in modern C++ and in a object oriented manner. Simplicity (or rather: avoiding complexity) is a main goal. Well. Fingers crossed. At the highes level the structure is as follows:
 - <b>StoneCold.Base:</b> Basic Settings, common Types and Enums, Math and Exception classes
 - <b>StoneCold.Engine:</b>OpenGL Engine, Entity-Component-System, Game-State-Management and Event handling
 - <b>StoneCold.Game:</b> Window creation, Levels/NPCs/Menu Setup, Manager init and main loop
 - <b>StoneCold.Resources:</b> Resource management with Lifetime checks (loading and unloading)
 - <b>StoneCold.Tests:</b> Unit Tests
 
-The Engines core building blocks are the Entity–component–system (ECS) and the Game-State management. 
-
 <a name="copyr"/>
 
 # 4. Copyright and Attribution Notices
 
 Some of the Textures are hand drawn (thanks MS Paint and Gimp) but all the nice looking ones are created by actual Artists:
-
 - DawnBringer Color-Palette by Richard Fhager [link to his pixeljoint](http://pixeljoint.com/p/23821.htm)
 - Dwarf Sprites by Elthen (Ahmet Avci) [link to his patreon](https://www.patreon.com/elthen)
 - Skeleton Sprites by Jesse Munguia [link to his homepage](https://jessemunguia.com/)

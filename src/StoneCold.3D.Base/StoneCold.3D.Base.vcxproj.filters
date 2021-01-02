@@ -7,6 +7,9 @@
     <Filter Include="Exceptions">
       <UniqueIdentifier>{a25eb044-b938-4892-a14b-155b3206d4a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Helper">
+      <UniqueIdentifier>{4c73eed2-df63-464d-9b4b-042ec51c79b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Settings.hpp">
@@ -23,6 +26,12 @@
     </ClInclude>
     <ClInclude Include="ErrorCallback.hpp">
       <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums.hpp">
+      <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumHelper.hpp">
+      <Filter>Helper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
