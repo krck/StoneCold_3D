@@ -147,9 +147,37 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="DecisionTee.cpp" />
+    <ClCompile Include="EngineCore.cpp" />
+    <ClCompile Include="EntityComponentSystem.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="IntroState.cpp" />
+    <ClCompile Include="MenuState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationSystem.hpp" />
     <ClInclude Include="Camera.hpp" />
+    <ClInclude Include="CollisionDetectionSystem.hpp" />
+    <ClInclude Include="CollisionResolutionSystem.hpp" />
+    <ClInclude Include="Components.hpp" />
+    <ClInclude Include="DecisionTee.hpp" />
+    <ClInclude Include="EngineCore.hpp" />
+    <ClInclude Include="EntityComponentArray.hpp" />
+    <ClInclude Include="EntityComponentSystem.hpp" />
+    <ClInclude Include="EntityComponentWorld.hpp" />
+    <ClInclude Include="EventManager.hpp" />
+    <ClInclude Include="GameState.hpp" />
+    <ClInclude Include="IntroState.hpp" />
+    <ClInclude Include="Keyboard.hpp" />
+    <ClInclude Include="LayeredRenderSystem.hpp" />
+    <ClInclude Include="MenuState.hpp" />
+    <ClInclude Include="MotionRenderSystem.hpp" />
+    <ClInclude Include="Mouse.hpp" />
+    <ClInclude Include="ScreenPositionSystem.hpp" />
+    <ClInclude Include="State.hpp" />
+    <ClInclude Include="StaticRenderSystem.hpp" />
+    <ClInclude Include="System.hpp" />
+    <ClInclude Include="TransformationSystem.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StoneCold.3D.Base\StoneCold.3D.Base.vcxproj">

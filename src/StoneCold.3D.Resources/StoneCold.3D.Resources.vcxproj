@@ -146,14 +146,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MeshLoader.cpp" />
+    <ClCompile Include="LoadManager.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationResource.hpp" />
     <ClInclude Include="DefaultShaderNoTex.hpp" />
+    <ClInclude Include="FontResource.hpp" />
     <ClInclude Include="Mesh.hpp" />
-    <ClInclude Include="MeshLoader.hpp" />
+    <ClInclude Include="LoadManager.hpp" />
+    <ClInclude Include="Resource.hpp" />
+    <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="Shader.hpp" />
+    <ClInclude Include="TextureResource.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StoneCold.3D.Base\StoneCold.3D.Base.vcxproj">

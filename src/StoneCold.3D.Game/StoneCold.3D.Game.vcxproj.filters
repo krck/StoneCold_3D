@@ -7,9 +7,6 @@
     <Filter Include="Managers">
       <UniqueIdentifier>{4b54d000-b8e7-4516-84c4-28cecc374201}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Input">
-      <UniqueIdentifier>{7a19c0dd-658d-47e8-aa14-78747263a583}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -24,6 +21,15 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="SimulationManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="AiManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameCore.hpp">
@@ -35,11 +41,14 @@
     <ClInclude Include="InputManager.hpp">
       <Filter>Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Keyboard.hpp">
-      <Filter>Input</Filter>
+    <ClInclude Include="MapManager.hpp">
+      <Filter>Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Mouse.hpp">
-      <Filter>Input</Filter>
+    <ClInclude Include="SimulationManager.hpp">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="AiManager.hpp">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

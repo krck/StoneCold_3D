@@ -12,6 +12,7 @@ namespace StoneCold::Base {
 	// Put all "Enum -> String" and "String -> Enum" translations here
 	//
 	class EnumHelper {
+	public:
 		static AiDecision GetAiDecisionFromString(const std::string& str) {
 			if (str == "AiDecision::PLAYER_VISIBLE") return AiDecision::PLAYER_VISIBLE;
 			else if (str == "AiDecision::PLAYER_CLOSE") return AiDecision::PLAYER_CLOSE;

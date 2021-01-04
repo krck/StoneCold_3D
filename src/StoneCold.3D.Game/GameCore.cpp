@@ -1,7 +1,7 @@
 #include "GameCore.hpp"
 
 #include "DefaultShaderNoTex.hpp"
-#include "MeshLoader.hpp"
+#include "LoadManager.hpp"
 #include <windows.h>
 #include <Camera.hpp>
 
@@ -86,7 +86,7 @@ int GameCore::Run() {
 		basePath = basePath.substr(0, basePath.find_last_of("\\") + 1);
 		basePath += "res\\";
 
-		StoneCold::Resources::MeshLoader ml = StoneCold::Resources::MeshLoader();
+		StoneCold::Resources::LoadManager ml = StoneCold::Resources::LoadManager();
 		auto model = ml.LoadSimpleModelFromFile(basePath + "models\\coordinates\\coordinates.obj");
 
 		// Create a full Shader program with Vertex Shader and Fragment Shader
@@ -121,7 +121,7 @@ int GameCore::Run() {
 			if (keyboard.IsKeyPressed(GLFW_KEY_S)) { camera.ChangePosition(StoneCold::Engine::MoveDirection::BACKWARD, 0.02f); }
 			if (keyboard.IsKeyPressed(GLFW_KEY_LEFT_SHIFT)) { camera.ChangePosition(StoneCold::Engine::MoveDirection::DOWN, 0.02f); }
 			if (keyboard.IsKeyPressed(GLFW_KEY_SPACE)) { camera.ChangePosition(StoneCold::Engine::MoveDirection::UP, 0.02f); }
-			camera.ChangeLineOfSight((int)mouse.GetMouseX(), (int)mouse.GetMouseY(), true);
+			//camera.ChangeLineOfSight((int)mouse.GetMouseX(), (int)mouse.GetMouseY(), true);
 
 
 

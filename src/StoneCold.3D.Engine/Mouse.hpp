@@ -4,7 +4,7 @@
 
 #include "StoneColdBase.hpp"
 
-namespace StoneCold::Game {
+namespace StoneCold::Engine {
 
 	//
 	// MouseServer (Singelton)

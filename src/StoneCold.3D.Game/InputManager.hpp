@@ -7,6 +7,8 @@
 
 namespace StoneCold::Game {
 
+	using namespace StoneCold::Engine;
+
 	static KeyboardServer* GlobalKeyboardServer = KeyboardServer::GetInstance();
 	static MouseServer* GlobalMouseServer = MouseServer::GetInstance();
 
@@ -40,9 +42,6 @@ namespace StoneCold::Game {
 			}
 		}
 
-		// Handle mouse movement
-		inline void MouseMotionCallback(GLFWwindow* win) const { GlobalMouseServer->OnMouseMove(win); }
-
 		// Handle mouswheel scrolling
 		static inline void MouseWheelCallback(GLFWwindow* window, double xoffset, double yoffset) { GlobalMouseServer->OnWheelMove(xoffset, yoffset); }
 
@@ -51,6 +50,9 @@ namespace StoneCold::Game {
 			if (entered) { GlobalMouseServer->OnWindowEnter(); }
 			else { GlobalMouseServer->OnWindowLeave(); }
 		}
+
+		// Handle mouse movement
+		inline void MouseMotionCallback(GLFWwindow* win) const { GlobalMouseServer->OnMouseMove(win); }
 
 		~InputManager() = default;
 	};

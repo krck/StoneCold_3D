@@ -1,6 +1,6 @@
 
-#ifndef STONECOLD_MESHLOADER_H
-#define STONECOLD_MESHLOADER_H
+#ifndef STONECOLD_LOADMANAGER_H
+#define STONECOLD_LOADMANAGER_H
 
 #include <string>
 #include <fstream>
@@ -20,7 +20,7 @@
 
 namespace StoneCold::Resources {
 
-	class MeshLoader {
+	class LoadManager {
 	public:
 		// Load simple, untextured mesh from an .obj File
 		std::shared_ptr<Model> LoadSimpleModelFromFile(const std::string& path);

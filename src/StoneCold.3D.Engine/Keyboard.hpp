@@ -8,7 +8,7 @@
 #include "Settings.hpp"
 #include "Types.hpp"
 
-namespace StoneCold::Game {
+namespace StoneCold::Engine {
 
 	//
 	// KeyboardServer (Singelton)

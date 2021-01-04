@@ -16,14 +16,14 @@ namespace StoneCold::Engine {
 	public:
 		// OpenGL Coordinate System
 		// ------------------------------
-		//             +Y
-		//              | -Z
-		//              | /
-		//       -X____ |/_____ +X
-		//              /
-		//             /|
-		//           +Z |
-		//             -Y
+		//              +Y
+		//               | -Z
+		//               | /
+		//        -X____ |/_____ +X
+		//               /
+		//              /|
+		//            +Z |
+		//              -Y
 		// ------------------------------
 		// +Y = UP       |  -Y = DOWN
 		// +Z = BACKWARD |  -Z = FORWARD
@@ -32,6 +32,10 @@ namespace StoneCold::Engine {
 		const glm::vec3 WORLD_UP = glm::vec3(0.0f, 1.0f, 0.0f);
 		const glm::vec3 WORLD_FRONT = glm::vec3(0.0f, 0.0f, -1.0f);
 		const glm::vec3 WORLD_RIGHT = glm::vec3(1.0f, 0.0f, 0.0f);
+		// ---------------------------------------------------------------------------------------------------------
+		// This can be confusing because in any usual 3D Model "space" (e.g. Blender) the Y and Z Axis are switched,
+		// meaning that Z = UP/DOWN Axis and Y = FORWARD/BACKWARD Axis. Also +/- on that Y Axis are switched as well
+		// ---------------------------------------------------------------------------------------------------------
 
 	public:
 		Camera(const glm::vec3& pos);

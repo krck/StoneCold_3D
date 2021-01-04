@@ -19,16 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AiManager.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="GameCore.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="MapManager.cpp" />
+    <ClCompile Include="SimulationManager.cpp" />
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AiManager.hpp" />
     <ClInclude Include="GameCore.hpp" />
     <ClInclude Include="InputManager.hpp" />
-    <ClInclude Include="Keyboard.hpp" />
-    <ClInclude Include="Mouse.hpp" />
+    <ClInclude Include="MapManager.hpp" />
+    <ClInclude Include="SimulationManager.hpp" />
     <ClInclude Include="WindowManager.hpp" />
   </ItemGroup>
   <ItemGroup>

@@ -1,15 +1,15 @@
-#include "MeshLoader.hpp"
+#include "LoadManager.hpp"
 
 using namespace StoneCold::Resources;
 
-std::shared_ptr<Model> MeshLoader::LoadSimpleModelFromFile(const std::string& path) {
+std::shared_ptr<Model> LoadManager::LoadSimpleModelFromFile(const std::string& path) {
 	std::vector<Mesh> meshes;
 	std::vector<Vertex> tmpVertices;
 	std::vector<uint16> tmpIndices;
 
 	// Parse the .obj file data
 	Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+	const aiScene* scene = importer.ReadFile(path, aiProcess_CalcTangentSpace);
 	if (scene != nullptr) {
 		// Get only the first mesh
 		const aiMesh* mesh = scene->mMeshes[0];
