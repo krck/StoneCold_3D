@@ -2,6 +2,8 @@
 #ifndef STONECOLD_SETTINGS_H
 #define STONECOLD_SETTINGS_H
 
+#include <glm/vec3.hpp>
+
 #define WINDOW_WIDTH			2560
 #define WINDOW_HEIGHT			1440
 
@@ -30,37 +32,37 @@
 
 // Dawnbringer Palette (32 Colors) as SDL_Color sturcts
 // (The gray's differ a bit form the original and the Names are also custom)
-//#define CL_BLACK				SDL_Color { 0, 0, 0 }
-//#define CL_SLATE_GRAY			SDL_Color { 34, 32, 52 }
-//#define CL_PLUM_PURPLE			SDL_Color { 69, 40, 60 }
-//#define CL_DARK_BROWN			SDL_Color { 102, 57, 49 }
-//#define CL_LIGHT_BROWN			SDL_Color { 143, 86, 59 }
-//#define CL_ORANGE				SDL_Color { 223, 113, 38 }
-//#define CL_DARK_SAND			SDL_Color { 217, 160, 102 }
-//#define CL_LIGHT_SAND			SDL_Color { 238, 195, 154 }
-//#define CL_YELLOW				SDL_Color { 251, 242, 54 }
-//#define CL_LIGHT_GREEN			SDL_Color { 153, 229, 80 }
-//#define CL_MEDIUM_GREEN			SDL_Color { 106, 190, 48 }
-//#define CL_TURQUOISE 			SDL_Color { 55, 148, 110 }
-//#define CL_DARK_GREEN			SDL_Color { 75, 105, 47 }
-//#define CL_MOSS_GREEN			SDL_Color { 55, 148, 110 }
-//#define CL_PINE_GREEN			SDL_Color { 50, 60, 57 }
-//#define CL_DARK_PURPLE			SDL_Color { 63, 63, 116 }
-//#define CL_MARINE_BLUE			SDL_Color { 48, 96, 130 }
-//#define CL_DARK_BLUE			SDL_Color { 91, 110, 225 }
-//#define CL_MEDIUM_BLUE			SDL_Color { 99, 155, 255 }
-//#define CL_LIGHT_BLUE			SDL_Color { 95, 205, 228 }
-//#define CL_ICE_BLUE				SDL_Color { 203, 219, 252 }
-//#define CL_WHITE				SDL_Color { 255, 255, 255 }
-//#define CL_STONE_GRAY			SDL_Color { 155, 173, 183 }
-//#define CL_LIGHT_GRAY			SDL_Color { 146, 146, 146 }
-//#define CL_MEDIUM_GRAY			SDL_Color { 115, 115, 115 }
-//#define CL_DARK_GRAY			SDL_Color { 89, 86, 82 }
-//#define CL_PURPLE				SDL_Color { 118, 66, 138 }
-//#define CL_DARK_RED				SDL_Color { 172, 50, 50 }
-//#define CL_LIGHT_RED			SDL_Color { 217, 87, 99 }
-//#define CL_PINK					SDL_Color { 215, 123, 186 }
-//#define CL_OLIVE_GREEN			SDL_Color { 143, 151, 74 }
-//#define CL_MERIGOLD				SDL_Color { 138, 111, 48 }
+#define CL_BLACK			glm::u8vec3(0,	 0,   0  )
+#define CL_SLATE_GRAY		glm::u8vec3(34,  32,  52 )
+#define CL_PLUM_PURPLE		glm::u8vec3(69,  40,  60 )
+#define CL_DARK_BROWN		glm::u8vec3(102, 57,  49 )
+#define CL_LIGHT_BROWN		glm::u8vec3(143, 86,  59 )
+#define CL_ORANGE			glm::u8vec3(223, 113, 38 )
+#define CL_DARK_SAND		glm::u8vec3(217, 160, 102)
+#define CL_LIGHT_SAND		glm::u8vec3(238, 195, 154)
+#define CL_YELLOW			glm::u8vec3(251, 242, 54 )
+#define CL_LIGHT_GREEN		glm::u8vec3(153, 229, 80 )
+#define CL_MEDIUM_GREEN		glm::u8vec3(106, 190, 48 )
+#define CL_TURQUOISE 		glm::u8vec3(55,  148, 110)
+#define CL_DARK_GREEN		glm::u8vec3(75,  105, 47 )
+#define CL_MOSS_GREEN		glm::u8vec3(55,  148, 110)
+#define CL_PINE_GREEN		glm::u8vec3(50,  60,  57 )
+#define CL_DARK_PURPLE		glm::u8vec3(63,  63,  116)
+#define CL_MARINE_BLUE		glm::u8vec3(48,  96,  130)
+#define CL_DARK_BLUE		glm::u8vec3(91,  110, 225)
+#define CL_MEDIUM_BLUE		glm::u8vec3(99,  155, 255)
+#define CL_LIGHT_BLUE		glm::u8vec3(95,  205, 228)
+#define CL_ICE_BLUE			glm::u8vec3(203, 219, 252)
+#define CL_WHITE			glm::u8vec3(255, 255, 255)
+#define CL_STONE_GRAY		glm::u8vec3(155, 173, 183)
+#define CL_LIGHT_GRAY		glm::u8vec3(146, 146, 146)
+#define CL_MEDIUM_GRAY		glm::u8vec3(115, 115, 115)
+#define CL_DARK_GRAY		glm::u8vec3(89,  86,  82 )
+#define CL_PURPLE			glm::u8vec3(118, 66,  138)
+#define CL_DARK_RED			glm::u8vec3(172, 50,  50 )
+#define CL_LIGHT_RED		glm::u8vec3(217, 87,  99 )
+#define CL_PINK				glm::u8vec3(215, 123, 186)
+#define CL_OLIVE_GREEN		glm::u8vec3(143, 151, 74 )
+#define CL_MERIGOLD			glm::u8vec3(138, 111, 48 )
 
 #endif

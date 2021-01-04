@@ -153,6 +153,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="IntroState.cpp" />
     <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationSystem.hpp" />
@@ -165,7 +166,8 @@
     <ClInclude Include="EntityComponentArray.hpp" />
     <ClInclude Include="EntityComponentSystem.hpp" />
     <ClInclude Include="EntityComponentWorld.hpp" />
-    <ClInclude Include="EventManager.hpp" />
+    <ClInclude Include="InputManager.hpp" />
+    <ClInclude Include="MessageService.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="IntroState.hpp" />
     <ClInclude Include="Keyboard.hpp" />
@@ -178,6 +180,7 @@
     <ClInclude Include="StaticRenderSystem.hpp" />
     <ClInclude Include="System.hpp" />
     <ClInclude Include="TransformationSystem.hpp" />
+    <ClInclude Include="WindowManager.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StoneCold.3D.Base\StoneCold.3D.Base.vcxproj">

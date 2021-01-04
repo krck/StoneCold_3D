@@ -3,7 +3,6 @@
 #define STONECOLD_STATE_H
 
 #include "Types.hpp"
-#include "SDL_Base.hpp"
 #include "EntityComponentSystem.hpp"
 #include <vector>
 
@@ -24,9 +23,8 @@ class EngineCore;
 //
 class State {
 public:
-	State(uint16 maxEntities, SDL_Renderer* renderer, EngineCore* engine)
+	State(uint16 maxEntities, EngineCore* engine)
 		: _ecs(EntityComponentSystem(maxEntities))
-		, _renderer(renderer)
 		, _engine(engine) { }
 
 	inline EntityComponentSystem* GetECS() { return &_ecs; }
@@ -36,14 +34,13 @@ public:
 	virtual void Start() { } // = 0;
 	virtual void Stop() { } // = 0;
 
-	virtual bool HandleSDLEvent(const SDL_Event& sdlEvent) = 0;
-	virtual void HandleInputEvent(const std::vector<uint8>& keyStates) = 0;
-	virtual void Update(uint32 frameTime) = 0;
+	virtual bool HandleMessages() = 0;
+	virtual void HandleInputs() = 0;
+	virtual void Update(uint64 frameTime) = 0;
 	virtual void Render() = 0;
 
 protected:
 	EntityComponentSystem _ecs;
-	SDL_Renderer* _renderer;
 	EngineCore* _engine;
 };
 

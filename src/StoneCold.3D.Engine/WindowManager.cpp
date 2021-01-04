@@ -1,6 +1,7 @@
 #include "WindowManager.hpp"
 
-using namespace StoneCold::Game;
+using namespace StoneCold::Engine;
+
 
 bool WindowManager::Initialize(InputManager* inputManager) {
 	try {
@@ -15,7 +16,6 @@ bool WindowManager::Initialize(InputManager* inputManager) {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-		//std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 		return true;
 	}
 	catch (const std::exception & ex) {
@@ -25,12 +25,14 @@ bool WindowManager::Initialize(InputManager* inputManager) {
 	}
 }
 
+
 bool WindowManager::SetupWindow(const std::string& titel, uint16 width, uint16 height, bool fullscreen) {
 	try {
 		// Create the OpenGL context window
 		GLFWmonitor* primary = (fullscreen ? glfwGetPrimaryMonitor() : nullptr);
 		_window = glfwCreateWindow(width, height, titel.c_str(), primary, nullptr);
 		glfwMakeContextCurrent(_window);
+		std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 
 		// GLEW init only works after a OpenGL context was created
 		if (glewInit() != GLEW_OK)
@@ -41,7 +43,7 @@ bool WindowManager::SetupWindow(const std::string& titel, uint16 width, uint16 h
 		glDebugMessageCallback(GlobalErrorCallback::OpenGlCallback, 0);
 
 		// Enable V-Sync
-		glfwSwapInterval(1);
+		glfwSwapInterval(0);
 
 		// Set some OpenGL options
 		glDepthFunc(GL_LEQUAL);
@@ -76,6 +78,7 @@ bool WindowManager::SetupWindow(const std::string& titel, uint16 width, uint16 h
 	}
 }
 
+
 void WindowManager::ChangeWindowSize(int width, int height)
 {
 	glfwSetWindowSize(_window, width, height);
@@ -83,16 +86,19 @@ void WindowManager::ChangeWindowSize(int width, int height)
 	glViewport(0, 0, _actualWidth, _actualHeight);
 }
 
+
 void WindowManager::Clear() const {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
+
 void WindowManager::Update() const {
+	glfwSwapBuffers(_window);
 	glfwPollEvents();
 	_inputManager->MouseMotionCallback(_window);
-	glfwSwapBuffers(_window);
 }
+
 
 void WindowManager::SetWindowAsRenderTarget() {
 	// Set the default FrameBuffer

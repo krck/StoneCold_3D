@@ -4,7 +4,7 @@
 
 #include "EngineCore.hpp"
 #include "GameState.hpp"
-#include "EventManager.hpp"
+#include "MessageService.hpp"
 #include "AnimationSystem.hpp"
 #include "StaticRenderSystem.hpp"
 #include "LayeredRenderSystem.hpp"
@@ -14,15 +14,15 @@ namespace StoneCold::Engine {
 
 class MenuState : public State {
 public:
-	MenuState(uint16 maxEntities, SDL_Renderer* renderer, EngineCore* engine);
+	MenuState(uint16 maxEntities, EngineCore* engine);
 	MenuState(const MenuState&) = delete;
 	MenuState& operator=(const MenuState&) = delete;
 
 	virtual void Initialize() override;
 
-	virtual bool HandleSDLEvent(const SDL_Event& sdlEvent) override;
-	virtual void HandleInputEvent(const std::vector<uint8>& keyStates) override { }
-	virtual void Update(uint32 frameTime) override { }
+	virtual bool HandleMessages() override { return false; }
+	virtual void HandleInputs() override;
+	virtual void Update(uint64 frameTime) override { /* Nothing to update. Scene is static */ }
 	virtual void Render() override;
 
 	void SetButtons(const std::vector<entityId>& buttons);
@@ -37,8 +37,8 @@ private:
 	void OnButtonPressQuit();
 
 private:
-	SDL_FRect _camera;
-	EventManager& _eventManager;
+	KeyboardClient _keyboard;
+	MessageService* _messageService;
 	// EntityId's for fast access
 	uint8 _selectedButtonIndex;
 	std::vector<entityId> _buttons;

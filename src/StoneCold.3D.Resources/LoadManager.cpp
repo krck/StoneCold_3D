@@ -2,14 +2,13 @@
 
 using namespace StoneCold::Resources;
 
-std::shared_ptr<Model> LoadManager::LoadSimpleModelFromFile(const std::string& path) {
-	std::vector<Mesh> meshes;
+MeshResource LoadManager::LoadSimpleMeshFromFile(const std::string name, const std::string& fullPath) {
 	std::vector<Vertex> tmpVertices;
 	std::vector<uint16> tmpIndices;
 
 	// Parse the .obj file data
 	Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(path, aiProcess_CalcTangentSpace);
+	const aiScene* scene = importer.ReadFile(fullPath, aiProcess_CalcTangentSpace);
 	if (scene != nullptr) {
 		// Get only the first mesh
 		const aiMesh* mesh = scene->mMeshes[0];
@@ -23,7 +22,7 @@ std::shared_ptr<Model> LoadManager::LoadSimpleModelFromFile(const std::string& p
 			tmpvec.Normal.z = mesh->mNormals[i].z;
 			// default values for tangents and texture coords
 			tmpvec.Tangent = glm::vec3();
-			tmpvec.Texcoords = glm::vec2();
+			tmpvec.TextureCoords = glm::vec2();
 			tmpVertices.push_back(tmpvec);
 		}
 		// Now retrieve the corresponding vertex indices from the meshs faces
@@ -35,8 +34,7 @@ std::shared_ptr<Model> LoadManager::LoadSimpleModelFromFile(const std::string& p
 		}
 	}
 
-	meshes.push_back(Mesh(tmpVertices, tmpIndices, /*Texture(0, 0, 0, ""), */(path.substr(0, path.rfind('/')))));
-	return std::make_shared<Model>(meshes);
+	return MeshResource(name, tmpVertices, tmpIndices, nullptr);
 }
 
 

@@ -19,7 +19,7 @@ public:
 	ScreenPositionSystem(const ScreenPositionSystem&) = delete;
 	ScreenPositionSystem& operator=(const ScreenPositionSystem&) = delete;
 
-	virtual void Update(uint32 frameTime) override {
+	virtual void Update(uint64 frameTime) override {
 		auto& transformComponents = *_ecs.GetComponentArray<TransformationComponent>();
 		auto& positionComponents = *_ecs.GetComponentArray<ScreenPositionComponent>();
 
@@ -28,10 +28,10 @@ public:
 			auto& p = positionComponents[entityId];
 
 			// Update the Sprite position on screen based on the transformations
-			p.DestRect.x = t.Position.X;
-			p.DestRect.y = t.Position.Y;
-			p.DestRect.w = t.Dimension.X * t.Scale;
-			p.DestRect.h = t.Dimension.Y * t.Scale;
+			//p.DestRect.x = t.Position.X;
+			//p.DestRect.y = t.Position.Y;
+			//p.DestRect.w = t.Dimension.X * t.Scale;
+			//p.DestRect.h = t.Dimension.Y * t.Scale;
 		}
 	}
 

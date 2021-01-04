@@ -15,12 +15,6 @@
     <ClCompile Include="GameCore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="WindowManager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
     <ClCompile Include="MapManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
@@ -34,12 +28,6 @@
   <ItemGroup>
     <ClInclude Include="GameCore.hpp">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowManager.hpp">
-      <Filter>Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.hpp">
-      <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="MapManager.hpp">
       <Filter>Managers</Filter>

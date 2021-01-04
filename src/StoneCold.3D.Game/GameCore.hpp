@@ -7,20 +7,23 @@
 #include <string>
 #include <iostream>
 #include "WindowManager.hpp"
+#include "EngineCore.hpp"
+#include "IntroState.hpp"
+#include "MenuState.hpp"
+#include "GameState.hpp"
 //#include "AiManager.hpp"
 //#include "SDLManager.hpp"
 //#include "EngineCore.hpp"
-//#include "MapManager.hpp"
-//#include "EventManager.hpp"
-//#include "ResourceManager.hpp"
-//#include "SimulationManager.hpp"
-//#include <array>
+#include "MapManager.hpp"
+#include "LoadManager.hpp"
+#include "ResourceManager.hpp"
+#include "SimulationManager.hpp"
 
 namespace StoneCold::Game {
 
 	using namespace std::chrono;
-	//using namespace StoneCold::Engine;
-	//using namespace StoneCold::Resources;
+	using namespace StoneCold::Engine;
+	using namespace StoneCold::Resources;
 
 	//
 	// This is the central Game class running the main-loop
@@ -50,11 +53,12 @@ namespace StoneCold::Game {
 	private:
 		InputManager _inputManager;
 		WindowManager _windowManager;
-		//EngineCore _engine;
-		//ResourceManager _resources;
-		//SimulationManager _simulation;
+		EngineCore _engine;
+		LoadManager _loader;
+		ResourceManager _resources;
+		SimulationManager _simulation;
+		MapManager _mapManager;
 		//EventManager& _eventManager;
-		//MapManager _mapManager;
 		//AiManager _aiManager;
 	};
 

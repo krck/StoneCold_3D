@@ -6,35 +6,32 @@ using namespace StoneCold::Engine;
 
 
 EngineCore::EngineCore()
-	: _renderer(nullptr)
-	, _stateStack(std::stack<State*>())
+	: _stateStack(std::stack<State*>())
 	, _states(std::unordered_map<std::type_index, std::shared_ptr<State>>()) { };
 
 
-bool EngineCore::Initialize(SDL_Renderer* renderer) {
-	if (renderer != nullptr) {
-		_renderer = renderer;
+bool EngineCore::Initialize(WindowManager* window) {
+	if (window != nullptr) {
+		_window = window;
 		return true;
 	}
-	else {
-		return false;
-	}
+	return false;
 }
 
 
-bool EngineCore::HandleSDLEvent(const SDL_Event& sdlEvent) {
-	// Pass SDL Events to the current State / Scene and retrun if they handled it
-	return _stateStack.top()->HandleSDLEvent(sdlEvent);
+bool EngineCore::HandleMessages() {
+	// Trigger Message handling of the current State / Scene and retrun if they handled it
+	return _stateStack.top()->HandleMessages();
 }
 
 
-void EngineCore::HandleInputEvent(const std::vector<uint8>& keyStates) {
-	// Pass Keyboard Events to the current State / Scene
-	_stateStack.top()->HandleInputEvent(keyStates);
+void EngineCore::HandleInputs() {
+	// Trigger Input (Keyboard/Mouse) handling of the current State / Scene
+	_stateStack.top()->HandleInputs();
 }
 
 
-void EngineCore::Update(uint32 frameTime) {
+void EngineCore::Update(uint64 frameTime) {
 	// Update the current State / Scene
 	_stateStack.top()->Update(frameTime);
 }
@@ -42,14 +39,13 @@ void EngineCore::Update(uint32 frameTime) {
 
 void EngineCore::Render() {
 	// Clear the Frame (white)
-	SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
-	SDL_RenderClear(_renderer);
+	_window->Clear();
 
 	// Render the current State / Scene
 	_stateStack.top()->Render();
 
-	// Swap render buffer to the Window
-	SDL_RenderPresent(_renderer);
+	// Update Display-Screen and get Events
+	_window->Update();
 }
 
 

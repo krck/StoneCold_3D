@@ -12,7 +12,7 @@
 #include "Exception.hpp"
 #include "ErrorCallback.hpp"
 
-namespace StoneCold::Game {
+namespace StoneCold::Engine {
 
 	using namespace StoneCold::Base;
 

@@ -151,11 +151,10 @@
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimationResource.hpp" />
     <ClInclude Include="DefaultShaderNoTex.hpp" />
-    <ClInclude Include="FontResource.hpp" />
-    <ClInclude Include="Mesh.hpp" />
+    <ClInclude Include="MeshResource.hpp" />
     <ClInclude Include="LoadManager.hpp" />
+    <ClInclude Include="ModelResource.hpp" />
     <ClInclude Include="Resource.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="Shader.hpp" />

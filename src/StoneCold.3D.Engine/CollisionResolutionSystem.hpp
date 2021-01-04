@@ -18,7 +18,7 @@ public:
 	CollisionResolutionSystem(const CollisionResolutionSystem&) = delete;
 	CollisionResolutionSystem& operator=(const CollisionResolutionSystem&) = delete;
 
-	virtual void Update(uint32 frameTime) override {
+	virtual void Update(uint64 frameTime) override {
 		auto& collisionComponents = *_ecs.GetComponentArray<CollisionComponent>();
 		auto& transformComponents = *_ecs.GetComponentArray<TransformationComponent>();
 
@@ -26,10 +26,10 @@ public:
 			auto& c = collisionComponents[entityId];
 			auto& t = transformComponents[entityId];
 
-			if (c.CollisionWith != nullptr) {
-				t.Position.X -= (t.CurrentDelta.X * 3.f);
-				t.Position.Y -= (t.CurrentDelta.Y * 3.f);
-			}
+			//if (c.CollisionWith != nullptr) {
+			//	t.Position.X -= (t.CurrentDelta.X * 3.f);
+			//	t.Position.Y -= (t.CurrentDelta.Y * 3.f);
+			//}
 		}
 	}
 

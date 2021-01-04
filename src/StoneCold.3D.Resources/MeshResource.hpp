@@ -1,6 +1,6 @@
 
-#ifndef STONECOLD_MESH_H
-#define STONECOLD_MESH_H
+#ifndef STONECOLD_MESHRESOURCE_H
+#define STONECOLD_MESHRESOURCE_H
 
 #include <string>
 #include <sstream>
@@ -8,36 +8,27 @@
 #include <glm\vec2.hpp>
 #include <glm\vec3.hpp>
 
-#include "Types.hpp"
-#include "StoneColdBase.hpp"
+#include "Resource.hpp"
+#include "HelperClasses.hpp"
+#include "TextureResource.hpp"
 
 namespace StoneCold::Resources {
 
 	using namespace StoneCold::Base;
 
-	// A full Model is simply a collection of Meshes
-	class Mesh;
-	using Model = std::vector<Mesh>;
-
-
-	struct Vertex {
-		glm::vec3 Position;
-		glm::vec3 Normal;
-		glm::vec3 Tangent;
-		glm::vec2 Texcoords;
-	};
-
-
-	class Mesh {
+	//
+	// MeshResource
+	//
+	class MeshResource : public Resource {
 	public:
 		const std::string Directory;
 		const std::vector<Vertex> Vertices;
 		const std::vector<uint32> Indices;
-		//const Texture texture;
+		const TextureResource* Texture;
 
 	public:
-		Mesh(const std::vector<Vertex>& vertices, const std::vector<uint32>& indices, /*const Texture& texture, */const std::string& directory)
-			: Vertices(vertices), Indices(indices), /*texture(texture),*/ Directory(directory), _vao(0), _vbo(0), _ebo(0) {
+		MeshResource(const std::string& name, const std::vector<Vertex>& vertices, const std::vector<uint32>& indices, TextureResource* texture)
+			: Resource(name), Vertices(vertices), Indices(indices), Texture(texture), _vao(0), _vbo(0), _ebo(0) {
 			// Create the buffers
 			glGenVertexArrays(1, &_vao);
 			glGenBuffers(1, &_vbo);
@@ -53,7 +44,7 @@ namespace StoneCold::Resources {
 			glEnableVertexAttribArray(1);
 			glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, Tangent));
 			glEnableVertexAttribArray(2);
-			glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, Texcoords));
+			glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, TextureCoords));
 			glEnableVertexAttribArray(3);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 			// Load data into the index buffer

@@ -16,14 +16,14 @@
 #include <assimp\scene.h>
 #include <assimp\postprocess.h>
 
-#include "Mesh.hpp"
+#include "MeshResource.hpp"
 
 namespace StoneCold::Resources {
 
 	class LoadManager {
 	public:
 		// Load simple, untextured mesh from an .obj File
-		std::shared_ptr<Model> LoadSimpleModelFromFile(const std::string& path);
+		MeshResource LoadSimpleMeshFromFile(const std::string name, const std::string& fullPath);
 
 		//// Load complex Model: multiple Files, multiple Textures and Materials
 		//std::shared_ptr<Model> LoadComplexModelFromFile(const std::string& path);

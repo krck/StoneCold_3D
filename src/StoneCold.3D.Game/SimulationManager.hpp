@@ -27,11 +27,11 @@ namespace StoneCold::Game {
 	// 
 	class SimulationManager {
 	public:
-		SimulationManager() : _engine(nullptr), _renderer(nullptr), _resourceManager(nullptr), _mapManager(nullptr) { }
+		SimulationManager() : _engine(nullptr), _resourceManager(nullptr), _mapManager(nullptr) { }
 		SimulationManager(const SimulationManager&) = delete;
 		SimulationManager& operator=(const SimulationManager&) = delete;
 
-		bool Initialize(EngineCore* engine, SDL_Renderer* renderer, ResourceManager* resourceManager, MapManager* mapManager);
+		bool Initialize(EngineCore* engine, ResourceManager* resourceManager, MapManager* mapManager);
 
 		void CreateIntroState();
 		void CreateGameState();
@@ -48,7 +48,6 @@ namespace StoneCold::Game {
 
 	private:
 		EngineCore* _engine;
-		SDL_Renderer* _renderer;
 		ResourceManager* _resourceManager;
 		MapManager* _mapManager;
 	};

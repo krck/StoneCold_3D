@@ -23,9 +23,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Mesh.hpp">
-      <Filter>Resources</Filter>
-    </ClInclude>
     <ClInclude Include="Shader.hpp">
       <Filter>Shaders</Filter>
     </ClInclude>
@@ -35,12 +32,6 @@
     <ClInclude Include="ResourceManager.hpp">
       <Filter>Managers</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationResource.hpp">
-      <Filter>Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="FontResource.hpp">
-      <Filter>Resources</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.hpp">
       <Filter>Resources</Filter>
     </ClInclude>
@@ -49,6 +40,12 @@
     </ClInclude>
     <ClInclude Include="LoadManager.hpp">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshResource.hpp">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelResource.hpp">
+      <Filter>Resources</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

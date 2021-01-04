@@ -7,8 +7,11 @@
     <Filter Include="Exceptions">
       <UniqueIdentifier>{a25eb044-b938-4892-a14b-155b3206d4a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Helper">
+    <Filter Include="Enums">
       <UniqueIdentifier>{4c73eed2-df63-464d-9b4b-042ec51c79b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helper">
+      <UniqueIdentifier>{db3b8526-24c1-4e26-b569-6d354c27fa85}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -28,9 +31,12 @@
       <Filter>Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Enums.hpp">
-      <Filter>Helper</Filter>
+      <Filter>Enums</Filter>
     </ClInclude>
     <ClInclude Include="EnumHelper.hpp">
+      <Filter>Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="HelperClasses.hpp">
       <Filter>Helper</Filter>
     </ClInclude>
   </ItemGroup>

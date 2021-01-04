@@ -19,7 +19,7 @@ public:
 	AnimationSystem(const AnimationSystem&) = delete;
 	AnimationSystem& operator=(const AnimationSystem&) = delete;
 
-	virtual void Update(uint32 frameTime) override {
+	virtual void Update(uint64 frameTime) override {
 		auto& animationComponents = *_ecs.GetComponentArray<AnimationComponent>();
 		auto& positionComponents = *_ecs.GetComponentArray<ScreenPositionComponent>();
 
@@ -29,13 +29,13 @@ public:
 
 			// Udpate the Animation index based on its "play-speed" in case its set to automaticUpdate
 			// FIND SOME WAY TO DO THIS WITHOUT IFs TO NOT DISTURB THE CACHE, OUR LORD AND SAVIOR
-			a.TimeElapsed += frameTime;
-			if (a.TimeElapsed > a.CurrentAnimation->FrameTime) {
-				a.TimeElapsed -= a.CurrentAnimation->FrameTime;
-				a.CurrentFrameIndex = (a.CurrentFrameIndex < a.CurrentAnimation->FrameCount ? a.CurrentFrameIndex + 1 : 0);
-			}
+			//a.TimeElapsed += frameTime;
+			//if (a.TimeElapsed > a.CurrentAnimation->FrameTime) {
+			//	a.TimeElapsed -= a.CurrentAnimation->FrameTime;
+			//	a.CurrentFrameIndex = (a.CurrentFrameIndex < a.CurrentAnimation->FrameCount ? a.CurrentFrameIndex + 1 : 0);
+			//}
 
-			p.SrcRect = a.CurrentAnimation->FramePositions[a.CurrentFrameIndex];
+			//p.SrcRect = a.CurrentAnimation->FramePositions[a.CurrentFrameIndex];
 		}
 	}
 

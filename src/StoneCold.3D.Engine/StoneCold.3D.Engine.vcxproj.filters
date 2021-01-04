@@ -13,9 +13,6 @@
     <Filter Include="ECS">
       <UniqueIdentifier>{1edbe52f-1a09-4ff5-b603-0fea802b4cec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Events">
-      <UniqueIdentifier>{6d022a48-3787-4414-b976-66a0a131f367}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{bc1eb9be-64fa-4c9f-a275-431927b25f3b}</UniqueIdentifier>
     </Filter>
@@ -24,6 +21,9 @@
     </Filter>
     <Filter Include="ECS\Systems">
       <UniqueIdentifier>{9a11d47d-f5f8-486d-9fdd-d9e7fd0d1f57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Messages">
+      <UniqueIdentifier>{6d022a48-3787-4414-b976-66a0a131f367}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -78,9 +78,6 @@
     <ClInclude Include="EngineCore.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="EventManager.hpp">
-      <Filter>Events</Filter>
-    </ClInclude>
     <ClInclude Include="State.hpp">
       <Filter>States</Filter>
     </ClInclude>
@@ -95,6 +92,15 @@
     </ClInclude>
     <ClInclude Include="EntityComponentArray.hpp">
       <Filter>ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageService.hpp">
+      <Filter>Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowManager.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.hpp">
+      <Filter>Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="MenuState.cpp">
       <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowManager.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
