@@ -18,7 +18,7 @@ namespace StoneCold::Resources {
 	//
 	class TextureResource : public Resource {
 	public:
-		TextureResource(std::string name, uint32 textureID, uint32 normalID, uint32 specularID)
+		TextureResource(const std::string& name, uint32 textureID, uint32 normalID, uint32 specularID)
 			: Resource(name), _material(Material()), _textureDiffuse(textureID), _normalMap(normalID), _specularMap(specularID) { }
 
 		//void BindTexture() const {

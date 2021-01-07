@@ -16,23 +16,24 @@ namespace StoneCold::Engine {
 	// Workaround to set a additional Entity mask without a specific Component 
 	// (adding a Component always means adding a full Array of n Components)
 	//
-	static const bitMask64 RENDER_MOTION = 0x4000000000000000;
-	static const bitMask64 RENDER_STATIC = 0x8000000000000000;
+	static const bitMask64 MASK_SHADER_DEFAULTNOTEX =	0x8000000000000000;
+	//static const bitMask64 RENDER_STATIC =			0x4000000000000000;
 
 	//
 	// Component (Bit-)Masks
 	//
 	static auto ComponentMasks = std::unordered_map<hash, const bitMask64>({
-		{ GetTypeHash<AnimationComponent>(),				0x0000000000000001 },
-		{ GetTypeHash<AttributeComponentUI>(),				0x0000000000000002 },
-		{ GetTypeHash<CollisionComponent>(),				0x0000000000000004 },
-		{ GetTypeHash<SpriteComponent>(),					0x0000000000000008 },
-		{ GetTypeHash<SpriteLayeredComponent>(),			0x0000000000000010 },
-		{ GetTypeHash<TransformationComponent>(),			0x0000000000000020 },
-		{ GetTypeHash<VelocityComponent>(),					0x0000000000000040 },
-		{ GetTypeHash<ScreenPositionComponent>(),			0x0000000000000080 },
-		{ GetTypeHash<ScreenPositionLayeredComponent>(),	0x0000000000000100 },
-		{ GetTypeHash<EnemyStateComponent>(),				0x0000000000000200 }
+		{ GetTypeHash<MeshComponent>(),						0x0000000000000001 },
+		{ GetTypeHash<TransformationComponent>(),			0x0000000000000002 },
+		{ GetTypeHash<VelocityComponent>(),					0x0000000000000004 },
+		//{ GetTypeHash<VelocityComponent>(),				0x0000000000000008 }
+		//{ GetTypeHash<SpriteLayeredComponent>(),			0x0000000000000010 },
+		//{ GetTypeHash<TransformationComponent>(),			0x0000000000000020 },
+		//{ GetTypeHash<VelocityComponent>(),				0x0000000000000040 },
+		//{ GetTypeHash<ScreenPositionComponent>(),			0x0000000000000080 },
+		//{ GetTypeHash<ScreenPositionLayeredComponent>(),	0x0000000000000100 },
+		//{ GetTypeHash<EnemyStateComponent>(),				0x0000000000000200 }
+		//{ GetTypeHash<EnemyStateComponent>(),				0x0000000000000200 }
 		});
 
 	template<typename T>
@@ -50,16 +51,9 @@ namespace StoneCold::Engine {
 			// Initialize the queue with all possible entity IDs
 			_world = std::unordered_map<hash, std::shared_ptr<IEntityComponentArray>>();
 
-			_world.insert({ GetTypeHash<AnimationComponent>(), std::make_shared<EntityComponentArray<AnimationComponent>>(maxEntities) });
-			_world.insert({ GetTypeHash<AttributeComponentUI>(), std::make_shared<EntityComponentArray<AttributeComponentUI>>(maxEntities) });
-			_world.insert({ GetTypeHash<CollisionComponent>(), std::make_shared<EntityComponentArray<CollisionComponent>>(maxEntities) });
-			_world.insert({ GetTypeHash<SpriteComponent>(), std::make_shared<EntityComponentArray<SpriteComponent>>(maxEntities) });
-			_world.insert({ GetTypeHash<SpriteLayeredComponent>(), std::make_shared<EntityComponentArray<SpriteLayeredComponent>>(maxEntities) });
+			_world.insert({ GetTypeHash<MeshComponent>(), std::make_shared<EntityComponentArray<MeshComponent>>(maxEntities) });
 			_world.insert({ GetTypeHash<TransformationComponent>(), std::make_shared<EntityComponentArray<TransformationComponent>>(maxEntities) });
 			_world.insert({ GetTypeHash<VelocityComponent>(), std::make_shared<EntityComponentArray<VelocityComponent>>(maxEntities) });
-			_world.insert({ GetTypeHash<ScreenPositionComponent>(), std::make_shared<EntityComponentArray<ScreenPositionComponent>>(maxEntities) });
-			_world.insert({ GetTypeHash<ScreenPositionLayeredComponent>(), std::make_shared<EntityComponentArray<ScreenPositionLayeredComponent>>(maxEntities) });
-			_world.insert({ GetTypeHash<EnemyStateComponent>(), std::make_shared<EntityComponentArray<EnemyStateComponent>>(maxEntities) });
 		}
 
 		EntityComponentWorld(const EntityComponentWorld&) = delete;

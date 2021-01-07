@@ -2,13 +2,15 @@
 #ifndef STONECOLD_SIMULATIONMANAGER_H
 #define STONECOLD_SIMULATIONMANAGER_H
 
+#include <iostream>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include "EngineCore.hpp"
 #include "MapManager.hpp"
 #include "IntroState.hpp"
 #include "GameState.hpp"
 #include "MenuState.hpp"
 #include "ResourceManager.hpp"
-#include <iostream>
 
 namespace StoneCold::Game {
 
@@ -27,11 +29,11 @@ namespace StoneCold::Game {
 	// 
 	class SimulationManager {
 	public:
-		SimulationManager() : _engine(nullptr), _resourceManager(nullptr), _mapManager(nullptr) { }
+		SimulationManager() : _engine(nullptr), _window(nullptr), _resourceManager(nullptr), _mapManager(nullptr) { }
 		SimulationManager(const SimulationManager&) = delete;
 		SimulationManager& operator=(const SimulationManager&) = delete;
 
-		bool Initialize(EngineCore* engine, ResourceManager* resourceManager, MapManager* mapManager);
+		bool Initialize(EngineCore* engine, WindowManager* window, ResourceManager* resourceManager, MapManager* mapManager);
 
 		void CreateIntroState();
 		void CreateGameState();
@@ -48,6 +50,7 @@ namespace StoneCold::Game {
 
 	private:
 		EngineCore* _engine;
+		WindowManager* _window;
 		ResourceManager* _resourceManager;
 		MapManager* _mapManager;
 	};

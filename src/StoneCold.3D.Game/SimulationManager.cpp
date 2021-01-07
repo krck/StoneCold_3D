@@ -7,9 +7,10 @@ using namespace StoneCold::Resources;
 using namespace StoneCold::Game;
 
 
-bool StoneCold::Game::SimulationManager::Initialize(EngineCore* engine, ResourceManager* resourceManager, MapManager* mapManager) {
-	if (engine != nullptr && resourceManager != nullptr && mapManager != nullptr) {
+bool StoneCold::Game::SimulationManager::Initialize(EngineCore* engine, WindowManager* window, ResourceManager* resourceManager, MapManager* mapManager) {
+	if (engine != nullptr && window != nullptr && resourceManager != nullptr && mapManager != nullptr) {
 		_engine = engine;
+		_window = window;
 		_resourceManager = resourceManager;
 		_mapManager = mapManager;
 		return true;
@@ -76,13 +77,19 @@ void SimulationManager::CreateGameState() {
 		_resourceManager->UnloadExternalResources(ResourceLifeTime::Game);
 		_engine->RemoveState<GameState>();
 
+		// Get the default Projection Matrix to render the Game based on Window aspect, FoV and "near/far" values
+		glm::mat4 projection = glm::perspective(45.0f, (_window->GetWidth() / (float)_window->GetHeight()), 0.1f, 1000.0f);
+
 		// Create a new GameState
-		auto game = std::make_shared<GameState>(5000, _engine);
+		auto game = std::make_shared<GameState>(5000, _engine, projection);
 		auto gameECS = game->GetECS();
 		game->Initialize();
 
-		//// Get all external Resources needed by the GameState (Player Character, Player GUI, etc.)
-		//auto playerTexture = _resourceManager->LoadExternalResource<TextureResource>(ResourceLifeTime::Game, Raw::PLAYER_TEXTURE);
+		// Get all external Resources needed by the GameState (Player Character, Player GUI, etc.)
+		auto coordsModel = _resourceManager->LoadExternalResource<MeshResource>(ResourceLifeTime::Game, "models\\coordinates\\coordinates.obj");
+
+		// ...
+		//// Create a full Shader program with Vertex Shader and Fragment Shader
 
 		//// -----------------------------------------------------
 		//// ----------- GAME - GAME-OBJECT - Map Tiles ----------
@@ -96,27 +103,20 @@ void SimulationManager::CreateGameState() {
 		//	gameECS->AddComponent<SpriteComponent>(mt, { nullptr, SDL_RendererFlip::SDL_FLIP_NONE });
 		//}
 
-		//// -----------------------------------------------------
-		//// ------- GAME - GAME-OBJECT - Player Character -------
-		//// -----------------------------------------------------
-		//auto playerDefaultAnim = &Raw::PLAYER_ANIMATION_FRAMES.find("idle")->second;
-		//// Player dimensions
-		//uint32 scale = 3;
-		//auto position = Vec2();
-		//auto dimension = Vec2(32, 32);
-		//// Set the Source rectange frame inside the texture (Pixels to take, from the .png)
-		//// Set the Destination rectangle with the actual position on screen with scaling (Where to put the Pixels)
-		//SDL_Rect defaultSrcRect = { 0, 0, static_cast<int>(dimension.X), static_cast<int>(dimension.Y) };
-		//SDL_FRect defaultDestRect = { position.X, position.Y, dimension.X * scale, dimension.Y * scale };
-		//// Player Entity and Components
-		//auto player = gameECS->CreateEntity();
-		//gameECS->AddAdditionalSystemMask(player, RENDER_MOTION);
-		//gameECS->AddComponent<VelocityComponent>(player, { Vec2() });
-		//gameECS->AddComponent<TransformationComponent>(player, { position, Vec2(), dimension, 250, 250, scale });
-		//gameECS->AddComponent<CollisionComponent>(player, { 1, Vec2(14.f, 18.f), defaultDestRect, nullptr });
-		//gameECS->AddComponent<AnimationComponent>(player, { &Raw::PLAYER_ANIMATION_FRAMES, playerDefaultAnim, 0, 0 });
-		//gameECS->AddComponent<ScreenPositionComponent>(player, { defaultSrcRect, defaultDestRect });
-		//gameECS->AddComponent<SpriteComponent>(player, { playerTexture->GetTextureSDL(), SDL_RendererFlip::SDL_FLIP_NONE });
+		// -----------------------------------------------------
+		// ------- GAME - GAME-OBJECT - Player Character -------
+		// -----------------------------------------------------
+		// Coordinates Model data and ECS Components
+		auto coordinates = gameECS->CreateEntity();
+
+		auto transformation = glm::mat4(1.0f);
+		transformation = glm::scale(transformation, glm::vec3(1.0f));
+		transformation = glm::translate(transformation, glm::vec3(0.0f, 0.0f, -3.0f));
+		//transformation = glm::rotate(transformation, t.Angle, t.Rotation);s
+
+		gameECS->AddAdditionalSystemMask(coordinates, MASK_SHADER_DEFAULTNOTEX);
+		gameECS->AddComponent<MeshComponent>(coordinates, { coordsModel->GetVAO(), coordsModel->GetEBO(), coordsModel->GetSize() });
+		gameECS->AddComponent<TransformationComponent>(coordinates, { transformation });
 
 		//game->SetEntities(player, mapTiles);
 
@@ -234,7 +234,7 @@ void SimulationManager::CreateMenuState() {
 		//menuECS->AddComponent<AnimationComponent>(btnQuit, { &Raw::BUTTON_ANIMATION_FRAMES, btnDefaultAnim, 0, 0 });
 		//menuECS->AddComponent<ScreenPositionLayeredComponent>(btnQuit, { btnDefaultSrc, destQuit, quitContentSrc, quitontentDest });
 		//menuECS->AddComponent<SpriteLayeredComponent>(btnQuit, { guiTexture->GetTextureSDL(), btnFlip, btnContentQuit->GetTextureSDL(), btnFlip });
-		
+
 		//menu->SetButtons({ btnPlay, btnOptions, btnCredits, btnQuit });
 
 		// Finally add the new MenuState to the Engines States

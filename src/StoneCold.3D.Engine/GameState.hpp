@@ -3,23 +3,19 @@
 #define STONECOLD_GAMESTATE_H
 
 #include <glm/vec2.hpp>
+#include <glm/mat4x4.hpp>
 
 #include "Settings.hpp"
 #include "EngineCore.hpp"
-#include "AnimationSystem.hpp"
+#include "RenderSystemDefaultNoTex.hpp"
 #include "TransformationSystem.hpp"
-#include "CollisionDetectionSystem.hpp"
-#include "CollisionResolutionSystem.hpp"
-#include "ScreenPositionSystem.hpp"
-#include "StaticRenderSystem.hpp"
-#include "MotionRenderSystem.hpp"
 #include "Camera.hpp"
 
 namespace StoneCold::Engine {
 
 class GameState : public State {
 public:
-	GameState(uint16 maxEntities, EngineCore* engine);
+	GameState(uint16 maxEntities, EngineCore* engine, glm::mat4 gameProjection);
 	GameState(const GameState&) = delete;
 	GameState& operator=(const GameState&) = delete;
 
@@ -45,14 +41,10 @@ private:
 	// EntityId's for fast access
 	entityId _player;
 	std::vector<entityId> _mapTiles;
+	glm::mat4 _projection;
 	// System ptrs for fast access
-	std::shared_ptr<AnimationSystem> _animationSystem;
+	std::shared_ptr<RenderSystemDefaultNoTex> _batchRenderSystem;
 	std::shared_ptr<TransformationSystem> _transformationSystem;
-	std::shared_ptr<CollisionDetectionSystem> _collisionDetectionSystem;
-	std::shared_ptr<CollisionResolutionSystem> _collisionResolutionSystem;
-	std::shared_ptr<ScreenPositionSystem> _screenPositionSystem;
-	std::shared_ptr<StaticRenderSystem> _staticRenderSystem;
-	std::shared_ptr<MotionRenderSystem> _motionRenderSystem;
 };
 
 }

@@ -2,10 +2,11 @@
 #ifndef STONECOLD_SYSTEM_H
 #define STONECOLD_SYSTEM_H
 
-#include "Types.hpp"
+#include <vector>
 #include <algorithm>
 #include <iterator>
-#include <vector>
+#include <glm/mat4x4.hpp>
+#include "Types.hpp"
 
 namespace StoneCold::Engine {
 
@@ -22,7 +23,7 @@ public:
 
 	virtual void HandleInputEvent(const std::vector<uint8>& keyStates) { }
 	virtual void Update(uint64 frameTime) { }
-	virtual void Render() { }
+	virtual void Render(const glm::mat4& projection, const glm::mat4& view) { }
 
 	inline bitMask64 GetSystemMask() const { return _componentMask; }
 	inline size_t GetEntitiesSize() const { return _entities.size(); }

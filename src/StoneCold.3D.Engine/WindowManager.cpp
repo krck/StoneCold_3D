@@ -43,7 +43,7 @@ bool WindowManager::SetupWindow(const std::string& titel, uint16 width, uint16 h
 		glDebugMessageCallback(GlobalErrorCallback::OpenGlCallback, 0);
 
 		// Enable V-Sync
-		glfwSwapInterval(0);
+		glfwSwapInterval(1);
 
 		// Set some OpenGL options
 		glDepthFunc(GL_LEQUAL);

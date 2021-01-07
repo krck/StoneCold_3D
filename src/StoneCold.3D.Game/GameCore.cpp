@@ -28,7 +28,7 @@ bool GameCore::Initialize(const std::string& windowName) {
 			allGood &= _windowManager.SetupWindow("StoneCold 3D", WINDOW_WIDTH, WINDOW_HEIGHT, false);
 			allGood &= _engine.Initialize(&_windowManager);
 			allGood &= _resources.Initialize(&_loader);
-			allGood &= _simulation.Initialize(&_engine, &_resources, &_mapManager);
+			allGood &= _simulation.Initialize(&_engine, &_windowManager, &_resources, &_mapManager);
 
 			if (!allGood)
 				throw GameException("Failed to initialize the Game");
@@ -75,30 +75,6 @@ int GameCore::Run() {
 		uint64 frameCount = 0;
 		float averageFPS = 0.f;
 
-
-
-
-
-
-
-		//auto model = _loader.LoadSimpleMeshFromFile(basePath + "models\\coordinates\\coordinates.obj");
-
-		//// Create a full Shader program with Vertex Shader and Fragment Shader
-		//auto shaderDefault = std::make_unique<StoneCold::Resources::DefaultShaderNoTex>();
-
-		//glm::mat4 projection = glm::perspective(45.0f, (_windowManager.GetWidth() / (float)_windowManager.GetHeight()), 0.1f, 1000.0f);
-
-		//glm::mat4 transform = glm::mat4(1.0f);
-		////transform = glm::translate(transform, glm::vec3(0.0f, 0.0f, -3.0f));
-		//transform = glm::scale(transform, glm::vec3(1.0f));
-
-		//glm::vec3 rotation = glm::vec3(0.0f, 1.0f, 0.0f);
-
-
-
-
-
-
 		// Start the main loop
 		while (!_windowManager.IsClosed())
 		{
@@ -110,23 +86,6 @@ int GameCore::Run() {
 			_engine.HandleInputs();
 			_engine.Update(frameTime);
 			_engine.Render();
-
-
-
-			//shaderDefault->Bind();
-			////transform = glm::rotate(transform, 0.02f, rotation);
-			//shaderDefault->SetUniformMat4("u_transform", transform);
-			//shaderDefault->SetUniformMat4("u_projection", projection);
-			//shaderDefault->SetUniformMat4("u_view", camera.GetViewMatrix());
-			//for (auto m : *model)
-			//{
-			//	m.BindBuffer();
-			//	glDrawElements(GL_TRIANGLES, (int)m.Indices.size(), GL_UNSIGNED_INT, nullptr);
-			//	m.UnbindBuffer();
-			//}
-			//shaderDefault->Unbind();
-
-
 
 			// FPS counter (average)
 			frameTimes[frameCount] = frameTime;

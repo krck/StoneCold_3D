@@ -2,11 +2,9 @@
 #ifndef STONECOLD_INTROSTATE_H
 #define STONECOLD_INTROSTATE_H
 
+#include <algorithm>
 #include "EngineCore.hpp"
 #include "MenuState.hpp"
-#include "ScreenPositionSystem.hpp"
-#include "StaticRenderSystem.hpp"
-#include <algorithm>
 
 namespace StoneCold::Engine {
 
@@ -28,7 +26,7 @@ public:
 private:
 	KeyboardClient _keyboard;
 	// System ptrs for fast access
-	std::shared_ptr<StaticRenderSystem> _staticRenderSystem;
+	//std::shared_ptr<StaticRenderSystem> _staticRenderSystem;
 
 };
 

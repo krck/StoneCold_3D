@@ -4,17 +4,11 @@
     <Filter Include="Resources">
       <UniqueIdentifier>{49ec7966-6d58-43b5-b36a-0eb72ae27e23}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{3eec4621-bd66-457d-9f48-5d3baeb29b01}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Managers">
       <UniqueIdentifier>{803633f9-c4f5-47a1-ad8d-e581a5d1a27a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Shaders</Filter>
-    </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
@@ -23,15 +17,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Shader.hpp">
-      <Filter>Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="DefaultShaderNoTex.hpp">
-      <Filter>Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.hpp">
-      <Filter>Managers</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.hpp">
       <Filter>Resources</Filter>
     </ClInclude>
@@ -46,6 +31,9 @@
     </ClInclude>
     <ClInclude Include="ModelResource.hpp">
       <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.hpp">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

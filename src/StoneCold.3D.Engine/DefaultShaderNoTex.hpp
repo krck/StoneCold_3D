@@ -4,7 +4,7 @@
 
 #include "Shader.hpp"
 
-namespace StoneCold::Resources {
+namespace StoneCold::Engine {
 
 	class DefaultShaderNoTex : public Shader {
 	private:
@@ -38,6 +38,7 @@ namespace StoneCold::Resources {
 		DefaultShaderNoTex() : Shader() {
 			auto result = CreateShaderProgramm(_vertexShader, _fragmentShader);
 			if (result) {
+				glUseProgram(_programId);
 				// Set the Attributes
 				AddAttribute(0, "position");
 				AddAttribute(1, "normal");
@@ -48,9 +49,9 @@ namespace StoneCold::Resources {
 				AddUniform("u_projection");
 				AddUniform("u_view");
 				//AddUniform("u_objectColor");
+				glUseProgram(0);
 			}
 		}
-
 	};
 
 }

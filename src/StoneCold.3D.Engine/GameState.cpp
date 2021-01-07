@@ -4,18 +4,14 @@
 using namespace StoneCold;
 using namespace StoneCold::Engine;
 
-GameState::GameState(uint16 maxEntities, EngineCore* engine)
+GameState::GameState(uint16 maxEntities, EngineCore* engine, glm::mat4 gameProjection)
 	: State(maxEntities, engine)
 	, _messageService(MessageService::GetInstance())
 	, _mapTiles(std::vector<entityId>())
-	, _animationSystem(nullptr)
+	, _batchRenderSystem(nullptr)
 	, _transformationSystem(nullptr)
-	, _collisionDetectionSystem(nullptr)
-	, _collisionResolutionSystem(nullptr)
-	, _screenPositionSystem(nullptr)
-	, _staticRenderSystem(nullptr)
-	, _motionRenderSystem(nullptr)
 	, _player(0)
+	, _projection(gameProjection)
 	, _camera(Camera(glm::vec3(0.0f, 10.0f, 10.f)))
 	, _mouse(MouseClient(MouseServer::GetInstance()))
 	, _keyboard(KeyboardClient(KeyboardServer::GetInstance())) { }
@@ -23,22 +19,12 @@ GameState::GameState(uint16 maxEntities, EngineCore* engine)
 
 void GameState::Initialize() {
 	// Create all Systems needed by the GameState ECS (keep ptr variables for quick access)
-	_animationSystem = std::make_shared<AnimationSystem>(_ecs);
+	_batchRenderSystem = std::make_shared<RenderSystemDefaultNoTex>(_ecs);
 	_transformationSystem = std::make_shared<TransformationSystem>(_ecs);
-	_collisionDetectionSystem = std::make_shared<CollisionDetectionSystem>(_ecs);
-	_collisionResolutionSystem = std::make_shared<CollisionResolutionSystem>(_ecs);
-	_screenPositionSystem = std::make_shared<ScreenPositionSystem>(_ecs);
-	_staticRenderSystem = std::make_shared<StaticRenderSystem>(_ecs);
-	_motionRenderSystem = std::make_shared<MotionRenderSystem>(_ecs);
 
 	// Add all the GameState Systems to the ECS
-	_ecs.AddSystem<AnimationSystem>(_animationSystem);
+	_ecs.AddSystem<RenderSystemDefaultNoTex>(_batchRenderSystem);
 	_ecs.AddSystem<TransformationSystem>(_transformationSystem);
-	_ecs.AddSystem<CollisionDetectionSystem>(_collisionDetectionSystem);
-	_ecs.AddSystem<CollisionResolutionSystem>(_collisionResolutionSystem);
-	_ecs.AddSystem<ScreenPositionSystem>(_screenPositionSystem);
-	_ecs.AddSystem<StaticRenderSystem>(_staticRenderSystem);
-	_ecs.AddSystem<MotionRenderSystem>(_motionRenderSystem);
 }
 
 
@@ -60,9 +46,6 @@ void GameState::HandleInputs() {
 	//auto pos = camera.GetPosition();
 	//std::cout << "X: " << pos.x << "\tY: " << pos.y << "\tZ: " << pos.z << std::endl;
 
-
-
-
 	// Debug "dash"
 	//t.Speed = (keyStates[SDL_SCANCODE_RCTRL] ? t.BaseSpeed * 3 : t.BaseSpeed);
 
@@ -80,14 +63,7 @@ void GameState::HandleInputs() {
 
 
 void GameState::Update(uint64 frameTime) {
-	// Animate and Move all objects
-	_animationSystem->Update(frameTime);
 	_transformationSystem->Update(frameTime);
-	// Now check for possible collisions
-	_collisionDetectionSystem->Update(frameTime);
-	_collisionResolutionSystem->Update(frameTime);
-	// Finally set the Position where objects should be rendered
-	_screenPositionSystem->Update(frameTime);
 
 	//// Center the camera over the Player
 	//auto& t = _ecs.GetComponentArray<TransformationComponent>()->at(_player);
@@ -97,12 +73,7 @@ void GameState::Update(uint64 frameTime) {
 
 
 void GameState::Render() {
-	// First: Render all static sprites (MapTiles)
-	_staticRenderSystem->Render();
-	// Second: Render all moving sprites (Player, NPCs, ...)
-	_motionRenderSystem->Render();
-	// Third: Render the GUI (always top Layer)
-	// ...
+	_batchRenderSystem->Render(_projection, _camera.GetViewMatrix());
 }
 
 

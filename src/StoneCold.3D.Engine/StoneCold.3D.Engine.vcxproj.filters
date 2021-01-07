@@ -25,6 +25,9 @@
     <Filter Include="Messages">
       <UniqueIdentifier>{6d022a48-3787-4414-b976-66a0a131f367}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{426794b0-079a-4f0e-9f60-b5b4075fc525}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.hpp">
@@ -38,27 +41,6 @@
     </ClInclude>
     <ClInclude Include="DecisionTee.hpp">
       <Filter>AI</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationSystem.hpp">
-      <Filter>ECS\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionDetectionSystem.hpp">
-      <Filter>ECS\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionResolutionSystem.hpp">
-      <Filter>ECS\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="LayeredRenderSystem.hpp">
-      <Filter>ECS\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="MotionRenderSystem.hpp">
-      <Filter>ECS\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="ScreenPositionSystem.hpp">
-      <Filter>ECS\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="StaticRenderSystem.hpp">
-      <Filter>ECS\Systems</Filter>
     </ClInclude>
     <ClInclude Include="System.hpp">
       <Filter>ECS\Systems</Filter>
@@ -101,6 +83,15 @@
     </ClInclude>
     <ClInclude Include="InputManager.hpp">
       <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultShaderNoTex.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderSystemDefaultNoTex.hpp">
+      <Filter>ECS\Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

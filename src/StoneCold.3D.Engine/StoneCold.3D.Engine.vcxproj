@@ -156,12 +156,10 @@
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimationSystem.hpp" />
     <ClInclude Include="Camera.hpp" />
-    <ClInclude Include="CollisionDetectionSystem.hpp" />
-    <ClInclude Include="CollisionResolutionSystem.hpp" />
     <ClInclude Include="Components.hpp" />
     <ClInclude Include="DecisionTee.hpp" />
+    <ClInclude Include="DefaultShaderNoTex.hpp" />
     <ClInclude Include="EngineCore.hpp" />
     <ClInclude Include="EntityComponentArray.hpp" />
     <ClInclude Include="EntityComponentSystem.hpp" />
@@ -171,13 +169,11 @@
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="IntroState.hpp" />
     <ClInclude Include="Keyboard.hpp" />
-    <ClInclude Include="LayeredRenderSystem.hpp" />
     <ClInclude Include="MenuState.hpp" />
-    <ClInclude Include="MotionRenderSystem.hpp" />
+    <ClInclude Include="RenderSystemDefaultNoTex.hpp" />
     <ClInclude Include="Mouse.hpp" />
-    <ClInclude Include="ScreenPositionSystem.hpp" />
+    <ClInclude Include="Shader.hpp" />
     <ClInclude Include="State.hpp" />
-    <ClInclude Include="StaticRenderSystem.hpp" />
     <ClInclude Include="System.hpp" />
     <ClInclude Include="TransformationSystem.hpp" />
     <ClInclude Include="WindowManager.hpp" />

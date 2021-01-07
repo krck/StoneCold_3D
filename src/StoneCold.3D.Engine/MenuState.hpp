@@ -2,13 +2,10 @@
 #ifndef STONECOLD_MENUSTATE_H
 #define STONECOLD_MENUSTATE_H
 
+#include <algorithm>
 #include "EngineCore.hpp"
 #include "GameState.hpp"
 #include "MessageService.hpp"
-#include "AnimationSystem.hpp"
-#include "StaticRenderSystem.hpp"
-#include "LayeredRenderSystem.hpp"
-#include <algorithm>
 
 namespace StoneCold::Engine {
 
@@ -43,9 +40,9 @@ private:
 	uint8 _selectedButtonIndex;
 	std::vector<entityId> _buttons;
 	// System ptrs for fast access
-	std::shared_ptr<AnimationSystem> _animationSystem;
-	std::shared_ptr<StaticRenderSystem> _staticRenderSystem;
-	std::shared_ptr<LayeredRenderSystem> _layeredRenderSystem;
+	//std::shared_ptr<AnimationSystem> _animationSystem;
+	//std::shared_ptr<StaticRenderSystem> _staticRenderSystem;
+	//std::shared_ptr<LayeredRenderSystem> _layeredRenderSystem;
 };
 
 }

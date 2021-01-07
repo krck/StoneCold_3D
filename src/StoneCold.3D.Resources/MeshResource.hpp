@@ -54,15 +54,9 @@ namespace StoneCold::Resources {
 			glBindVertexArray(0);
 		}
 
-		inline void BindBuffer() const {
-			glBindVertexArray(_vao);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
-		}
-
-		inline void UnbindBuffer() const {
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-			glBindVertexArray(0);
-		}
+		inline uint32 GetVAO() const { return _vao; }
+		inline uint32 GetEBO() const { return _ebo; }
+		inline uint64 GetSize() const { return Indices.size(); }
 
 	private:
 		uint32 _vao;
