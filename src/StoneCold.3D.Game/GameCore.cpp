@@ -8,7 +8,6 @@ GameCore::GameCore()
 	: _inputManager(InputManager())
 	, _windowManager(WindowManager())
 	, _engine(EngineCore())
-	, _loader(LoadManager())
 	, _resources(ResourceManager())
 	, _simulation(SimulationManager())
 	, _mapManager(MapManager())
@@ -27,7 +26,7 @@ bool GameCore::Initialize(const std::string& windowName) {
 			// Create the actual OpenGL Context Window and init all of the core systems
 			allGood &= _windowManager.SetupWindow("StoneCold 3D", WINDOW_WIDTH, WINDOW_HEIGHT, false);
 			allGood &= _engine.Initialize(&_windowManager);
-			allGood &= _resources.Initialize(&_loader);
+			allGood &= _resources.Initialize();
 			allGood &= _simulation.Initialize(&_engine, &_windowManager, &_resources, &_mapManager);
 
 			if (!allGood)

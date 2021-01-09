@@ -81,35 +81,8 @@ namespace StoneCold::Base {
 	//
 	enum class MapTileTypes {
 		Placeholder,
-		Portal,
-
-		Top_Default,
-		Top_Special,
-
-		Floor_Default,
-		Floor_Special_1,
-		Floor_Special_2,
-		Floor_Special_3,
-		Floor_Special_4,
-		Floor_Shadow,
-
-		Wall_Top,
-		Wall_Left,
-		Wall_Right,
-		Wall_Bottom,
-
-		Corner_Top_Left,
-		Corner_Top_Right,
-		Corner_Bottom_Left,
-		Corner_Bottom_Right,
-
-		Endblock_Top,
-		Endblock_Left,
-		Endblock_Right,
-		Endblock_Bottom,
-
-		Middle_Block_Horizontal,
-		Middle_Block_Vertical,
+		Empty,
+		Block
 	};
 
 	//

@@ -159,6 +159,7 @@
     <ClInclude Include="Camera.hpp" />
     <ClInclude Include="Components.hpp" />
     <ClInclude Include="DecisionTee.hpp" />
+    <ClInclude Include="DefaultShader.hpp" />
     <ClInclude Include="DefaultShaderNoTex.hpp" />
     <ClInclude Include="EngineCore.hpp" />
     <ClInclude Include="EntityComponentArray.hpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="IntroState.hpp" />
     <ClInclude Include="Keyboard.hpp" />
     <ClInclude Include="MenuState.hpp" />
+    <ClInclude Include="RenderSystemDefault.hpp" />
     <ClInclude Include="RenderSystemDefaultNoTex.hpp" />
     <ClInclude Include="Mouse.hpp" />
     <ClInclude Include="Shader.hpp" />

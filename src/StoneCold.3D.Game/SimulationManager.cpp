@@ -24,7 +24,7 @@ bool StoneCold::Game::SimulationManager::Initialize(EngineCore* engine, WindowMa
 void SimulationManager::CreateIntroState() {
 	try {
 		// First clear the Intro Resources
-		_resourceManager->UnloadExternalResources(ResourceLifeTime::Intro);
+		_resourceManager->UnloadResources(ResourceLifeTime::Intro);
 		_engine->RemoveState<IntroState>();
 
 		// Create a new IntroState
@@ -74,49 +74,51 @@ void SimulationManager::CreateIntroState() {
 void SimulationManager::CreateGameState() {
 	try {
 		// First clear the Game Resources
-		_resourceManager->UnloadExternalResources(ResourceLifeTime::Game);
+		_resourceManager->UnloadResources(ResourceLifeTime::Game);
 		_engine->RemoveState<GameState>();
 
 		// Get the default Projection Matrix to render the Game based on Window aspect, FoV and "near/far" values
 		glm::mat4 projection = glm::perspective(45.0f, (_window->GetWidth() / (float)_window->GetHeight()), 0.1f, 1000.0f);
 
 		// Create a new GameState
-		auto game = std::make_shared<GameState>(5000, _engine, projection);
+		auto game = std::make_shared<GameState>(20000, _engine, projection);
 		auto gameECS = game->GetECS();
 		game->Initialize();
 
 		// Get all external Resources needed by the GameState (Player Character, Player GUI, etc.)
-		auto coordsModel = _resourceManager->LoadExternalResource<MeshResource>(ResourceLifeTime::Game, "models\\coordinates\\coordinates.obj");
+		auto coordsModel = _resourceManager->LoadResource<MeshResource>(ResourceLifeTime::Game, "models\\coordinates\\coordinates.obj");
+		auto cubeModel = _resourceManager->LoadResource<ModelResource>(ResourceLifeTime::Game, "models\\map_cube\\map_cube.obj");
 
-		// ...
-		//// Create a full Shader program with Vertex Shader and Fragment Shader
-
-		//// -----------------------------------------------------
-		//// ----------- GAME - GAME-OBJECT - Map Tiles ----------
-		//// -----------------------------------------------------
-		//auto mapTiles = std::vector<entityId>(MAP_SIZE * MAP_SIZE);
-		//for (auto& mt : mapTiles) {
-		//	// Create MapTiles (Entities and Components) now, to speed up loading new maps later
-		//	mt = gameECS->CreateEntity();
-		//	gameECS->AddAdditionalSystemMask(mt, RENDER_STATIC);
-		//	gameECS->AddComponent<ScreenPositionComponent>(mt, { SDL_Rect(), SDL_FRect() });
-		//	gameECS->AddComponent<SpriteComponent>(mt, { nullptr, SDL_RendererFlip::SDL_FLIP_NONE });
-		//}
+		// -----------------------------------------------------
+		// ----------- GAME - GAME-OBJECT - Map Tiles ----------
+		// -----------------------------------------------------
+		auto map = std::move(_mapManager->GenerateMap(LevelType::Grassland, glm::ivec2(100, 100)));
+		for (const auto& m : map) {
+			// Cube Model data and ECS Components
+			auto cube = gameECS->CreateEntity();
+			auto cubeMesh = cubeModel->Model[0];
+			auto cubeTransformation = glm::mat4(1.0f);
+			cubeTransformation = glm::scale(cubeTransformation, glm::vec3(1.0f));
+			cubeTransformation = glm::translate(cubeTransformation, glm::vec3(m.x, m.z, m.y));
+			//transformation = glm::rotate(transformation, t.Angle, t.Rotation);s
+			gameECS->AddAdditionalSystemMask(cube, MASK_SHADER_DEFAULT);
+			gameECS->AddComponent<MeshComponent>(cube, { cubeMesh.GetVAO(), cubeMesh.GetEBO(), cubeMesh.GetSize() });
+			gameECS->AddComponent<TextureComponent>(cube, { cubeMesh.Texture->GetTextureId(), cubeMesh.Texture->GetNormalMapId(), cubeMesh.Texture->GetSpecularMapId() });
+			gameECS->AddComponent<TransformationComponent>(cube, { cubeTransformation });
+		}
 
 		// -----------------------------------------------------
 		// ------- GAME - GAME-OBJECT - Player Character -------
 		// -----------------------------------------------------
 		// Coordinates Model data and ECS Components
 		auto coordinates = gameECS->CreateEntity();
-
-		auto transformation = glm::mat4(1.0f);
-		transformation = glm::scale(transformation, glm::vec3(1.0f));
-		transformation = glm::translate(transformation, glm::vec3(0.0f, 0.0f, -3.0f));
+		auto coordTransformation = glm::mat4(1.0f);
+		coordTransformation = glm::scale(coordTransformation, glm::vec3(1.0f));
+		coordTransformation = glm::translate(coordTransformation, glm::vec3(0.0f, 0.0f, 0.0f));
 		//transformation = glm::rotate(transformation, t.Angle, t.Rotation);s
-
 		gameECS->AddAdditionalSystemMask(coordinates, MASK_SHADER_DEFAULTNOTEX);
 		gameECS->AddComponent<MeshComponent>(coordinates, { coordsModel->GetVAO(), coordsModel->GetEBO(), coordsModel->GetSize() });
-		gameECS->AddComponent<TransformationComponent>(coordinates, { transformation });
+		gameECS->AddComponent<TransformationComponent>(coordinates, { coordTransformation });
 
 		//game->SetEntities(player, mapTiles);
 
@@ -132,7 +134,7 @@ void SimulationManager::CreateGameState() {
 void SimulationManager::CreateMenuState() {
 	try {
 		// First clear the Menu Resources
-		_resourceManager->UnloadExternalResources(ResourceLifeTime::Menu);
+		_resourceManager->UnloadResources(ResourceLifeTime::Menu);
 		_engine->RemoveState<MenuState>();
 
 		// Create a new MenuState
@@ -249,7 +251,7 @@ void SimulationManager::CreateMenuState() {
 void SimulationManager::LoadLevel() {
 	try {
 		// First clear the Level Resources and check, if the Engine has a GameState that runs the Level
-		_resourceManager->UnloadExternalResources(ResourceLifeTime::Level);
+		_resourceManager->UnloadResources(ResourceLifeTime::Level);
 		if (_engine->HasState<GameState>()) {
 			auto gameState = _engine->GetState<GameState>();
 			auto gameECS = gameState->GetECS();

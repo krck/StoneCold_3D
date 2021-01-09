@@ -22,6 +22,12 @@ namespace StoneCold::Engine {
 		uint64 Size;
 	};
 
+	struct TextureComponent {
+		uint32 TextureId;
+		uint32 NormalMapId;
+		uint32 SpecularMapId;
+	};
+
 	//
 	// TransformationComponent holding any Objects Position within the Game World
 	//

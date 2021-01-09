@@ -11,11 +11,7 @@
 #include "IntroState.hpp"
 #include "MenuState.hpp"
 #include "GameState.hpp"
-//#include "AiManager.hpp"
-//#include "SDLManager.hpp"
-//#include "EngineCore.hpp"
 #include "MapManager.hpp"
-#include "LoadManager.hpp"
 #include "ResourceManager.hpp"
 #include "SimulationManager.hpp"
 
@@ -54,12 +50,9 @@ namespace StoneCold::Game {
 		InputManager _inputManager;
 		WindowManager _windowManager;
 		EngineCore _engine;
-		LoadManager _loader;
 		ResourceManager _resources;
 		SimulationManager _simulation;
 		MapManager _mapManager;
-		//EventManager& _eventManager;
-		//AiManager _aiManager;
 	};
 
 }

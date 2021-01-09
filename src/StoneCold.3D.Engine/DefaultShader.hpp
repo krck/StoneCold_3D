@@ -1,15 +1,15 @@
 
-#ifndef STONECOLD_DEFAULTSHADERNOTEX_H
-#define STONECOLD_DEFAULTSHADERNOTEX_H
+#ifndef STONECOLD_DEFAULTSHADER_H
+#define STONECOLD_DEFAULTSHADER_H
 
 #include "Shader.hpp"
 
 namespace StoneCold::Engine {
 
-	class DefaultShaderNoTex : public Shader {
+	class DefaultShader : public Shader {
 	private:
 		const std::string _vertexShader =
-			"#version 460 core"
+			"#version 410 core"
 			"\n"
 			"layout(location = 0) in vec3 position;"
 			"layout(location = 1) in vec3 normal;"
@@ -20,22 +20,33 @@ namespace StoneCold::Engine {
 			"uniform mat4 u_projection;"
 			"uniform mat4 u_view;"
 			"\n"
+			"out vec2 textureCoords;"
+			"\n"
 			"void main() {"
 			"	vec4 objPosition = u_transform * vec4(position, 1.0);"
 			"	gl_Position = u_projection * u_view * objPosition;"
+			"	textureCoords = texCoords;"
 			"}";
 
 		const std::string _fragmentShader =
-			"#version 460 core"
+			"#version 410 core"
+			"\n"
+			"in vec2 textureCoords;"
+			"\n"
+			"uniform vec3 u_objectColor;"
+			"uniform sampler2D u_textureDiffuse;"
 			"\n"
 			"out vec4 color;"
 			"\n"
 			"void main() {"
-			"	color = vec4(0.1f, 0.7f, 0.5f, 1.0f);"
+			"	vec4 textureColor = texture(u_textureDiffuse, textureCoords);"
+			"	color = textureColor;"
 			"}";
 
+
+
 	public:
-		DefaultShaderNoTex() : Shader() {
+		DefaultShader() : Shader() {
 			auto result = CreateShaderProgramm(_vertexShader, _fragmentShader);
 			if (result) {
 				glUseProgram(_programId);
@@ -44,6 +55,8 @@ namespace StoneCold::Engine {
 				AddAttribute(1, "normal");
 				AddAttribute(2, "tangent");
 				AddAttribute(3, "texCoords");
+				// Set Textures
+				AddUniform("u_textureDiffuse");
 				// Set the Uniforms
 				AddUniform("u_transform");
 				AddUniform("u_projection");

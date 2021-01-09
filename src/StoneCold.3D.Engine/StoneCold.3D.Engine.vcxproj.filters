@@ -93,6 +93,12 @@
     <ClInclude Include="RenderSystemDefaultNoTex.hpp">
       <Filter>ECS\Systems</Filter>
     </ClInclude>
+    <ClInclude Include="RenderSystemDefault.hpp">
+      <Filter>ECS\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultShader.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">

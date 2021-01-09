@@ -7,12 +7,12 @@
     <Filter Include="Managers">
       <UniqueIdentifier>{803633f9-c4f5-47a1-ad8d-e581a5d1a27a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Images">
+      <UniqueIdentifier>{0b0441c5-965e-4a29-8034-bf5c1a492307}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
@@ -23,9 +23,6 @@
     <ClInclude Include="TextureResource.hpp">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="LoadManager.hpp">
-      <Filter>Managers</Filter>
-    </ClInclude>
     <ClInclude Include="MeshResource.hpp">
       <Filter>Resources</Filter>
     </ClInclude>
@@ -34,6 +31,9 @@
     </ClInclude>
     <ClInclude Include="ResourceManager.hpp">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Images</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
