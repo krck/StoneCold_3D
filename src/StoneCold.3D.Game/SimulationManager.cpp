@@ -86,8 +86,16 @@ void SimulationManager::CreateGameState() {
 		game->Initialize();
 
 		// Get all external Resources needed by the GameState (Player Character, Player GUI, etc.)
-		auto coordsModel = _resourceManager->LoadResource<MeshResource>(ResourceLifeTime::Game, "models\\coordinates\\coordinates.obj");
-		auto cubeModel = _resourceManager->LoadResource<ModelResource>(ResourceLifeTime::Game, "models\\map_cube\\map_cube.obj");
+        #ifdef _WIN32
+        std::string coordsPath = "models\\coordinates\\";
+        std::string cubePath = "models\\map_cube\\";
+        #else
+        std::string coordsPath = "models/coordinates/";
+        std::string cubePath = "models/map_cube/";
+        #endif
+        
+		auto coordsModel = _resourceManager->LoadResource<MeshResource>(ResourceLifeTime::Game, (coordsPath + "coordinates.obj"));
+		auto cubeModel = _resourceManager->LoadResource<ModelResource>(ResourceLifeTime::Game, (cubePath + "map_cube.obj"));
 
 		// -----------------------------------------------------
 		// ----------- GAME - GAME-OBJECT - Map Tiles ----------

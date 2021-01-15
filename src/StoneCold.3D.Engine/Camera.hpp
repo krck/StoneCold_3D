@@ -5,8 +5,8 @@
 #include "math.h"
 #include "Enums.hpp"
 
-#include <glm\vec3.hpp>
-#include <glm\gtx\transform.hpp>
+#include <glm/vec3.hpp>
+#include <glm/gtx/transform.hpp>
 
 namespace StoneCold::Engine {
 

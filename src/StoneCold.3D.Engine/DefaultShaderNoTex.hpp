@@ -9,7 +9,7 @@ namespace StoneCold::Engine {
 	class DefaultShaderNoTex : public Shader {
 	private:
 		const std::string _vertexShader =
-			"#version 460 core"
+			"#version 410 core"
 			"\n"
 			"layout(location = 0) in vec3 position;"
 			"layout(location = 1) in vec3 normal;"
@@ -26,7 +26,7 @@ namespace StoneCold::Engine {
 			"}";
 
 		const std::string _fragmentShader =
-			"#version 460 core"
+			"#version 410 core"
 			"\n"
 			"out vec4 color;"
 			"\n"

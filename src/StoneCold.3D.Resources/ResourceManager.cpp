@@ -10,18 +10,21 @@ using namespace StoneCold::Resources;
 ResourceManager::ResourceManager()
 	: _resources(std::unordered_map<std::string, std::shared_ptr<Resource>>())
 	, _resouceLifetimes(std::unordered_map<ResourceLifeTime, std::vector<std::string>>()) {
-	// Get the current path to the running .exe
-	// When NULL is passed to GetModuleHandle, the handle of the exe itself is returned
-	char ownPth[MAX_PATH];
-	HMODULE hModule = GetModuleHandle(NULL);
-	if (hModule != NULL) {
-		GetModuleFileName(hModule, ownPth, (sizeof(ownPth)));
-	}
-
-	// Create the relative path to the current assets folder
-	_basePath = std::string(ownPth);
-	_basePath = _basePath.substr(0, _basePath.find_last_of("\\") + 1);
-	_basePath += "res\\";
+    #ifdef _WIN32
+        // Get the current path to the running .exe
+        // When NULL is passed to GetModuleHandle, the handle of the exe itself is returned
+        char ownPth[MAX_PATH];
+        HMODULE hModule = GetModuleHandle(NULL);
+        if (hModule != NULL) {
+            GetModuleFileName(hModule, ownPth, (sizeof(ownPth)));
+        }
+        // Create the relative path to the current assets folder
+        _basePath = std::string(ownPth);
+        _basePath = _basePath.substr(0, _basePath.find_last_of("\\") + 1);
+        _basePath += "res\\";
+    #else
+        _basePath = "/Users/peter/Documents/github/C++/StoneCold_3D/res/";
+    #endif
 }
 
 
@@ -78,7 +81,7 @@ void ResourceManager::UnloadResources(ResourceLifeTime resourceLifeTime) {
 std::shared_ptr<MeshResource> ResourceManager::LoadMeshResource(const std::string& name) {
 	auto fullPath = (_basePath + name);
 	std::vector<Vertex> tmpVertices;
-	std::vector<uint16> tmpIndices;
+	std::vector<uint32> tmpIndices;
 
 	// Parse the .obj file data
 	Assimp::Importer importer;
@@ -123,7 +126,11 @@ std::shared_ptr<ModelResource> ResourceManager::LoadModelResource(const std::str
 	}
 
 	// Retrieve the directory path of the filepath
-	const std::string directory = fullPath.substr(0, fullPath.find_last_of('\\'));
+    #ifdef _WIN32
+	const std::string directory = fullPath.substr(0, fullPath.find_last_of("\\"));
+    #else
+    const std::string directory = fullPath.substr(0, fullPath.find_last_of("/"));
+    #endif
 	std::vector<MeshResource> tmpMeshes;
 	// Process ASSIMP nodes recursively
 	ProcessAssimpNode(scene->mRootNode, scene, directory, tmpMeshes, resourceLifeTime);
@@ -152,7 +159,7 @@ void ResourceManager::ProcessAssimpNode(aiNode* node, const aiScene* scene, cons
 
 MeshResource ResourceManager::ProcessAssimpMesh(aiMesh* mesh, const aiScene* scene, const std::string& dir, ResourceLifeTime resourceLifeTime) {
 	std::vector<Vertex> tmpVertices;
-	std::vector<uint16> tmpIndices;
+	std::vector<uint32> tmpIndices;
 
 	// Get all of the mesh's vertices
 	for (uint32 i = 0; i < mesh->mNumVertices; i++) {
@@ -225,8 +232,12 @@ uint32 ResourceManager::ProcessAssimpTexture(aiMaterial* material, const std::st
 	aiString texStr;
 	material->GetTexture(type, 0, &texStr);
 	if (texStr.length) {
+        #ifdef _WIN32
 		const std::string filename = (dir + "\\" + texStr.C_Str());
-
+        #else
+        const std::string filename = (dir + "/" + texStr.C_Str());
+        #endif
+        
 		//Generate texture ID and load texture data
 		uint32 textureID = 0;
 		glGenTextures(1, &textureID);

@@ -2,14 +2,18 @@
 #ifndef STONECOLD_ERRORCALLBACK_H
 #define STONECOLD_ERRORCALLBACK_H
 
+#ifdef _WIN32
+// Remove all this in case of MacOS X
+// GL_DEBUG_OUTPUT with the global Error callback only works in OpenGL 4.3+
+
+#include <windows.h>
 #include <iostream>
-#include <windows.h> 
 #include "StoneColdBase.hpp"
 
 namespace StoneCold::Base {
 
 	static HANDLE GlobalConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-
+    
 	class GlobalErrorCallback {
 	public:
 		//
@@ -35,5 +39,7 @@ namespace StoneCold::Base {
 	};
 
 }
+
+#endif
 
 #endif

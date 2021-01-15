@@ -11,9 +11,15 @@ bool WindowManager::Initialize(InputManager* inputManager) {
 		if (!glfwInit())
 			throw GameException("GLFW Error on window creation");
 
-		// Settings needed for using OpenGL Version 410
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+        #ifdef _WIN32
+        // Windows Machine is running the current OpenGL 4.6
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+        #else
+        // MacOS X is only running the older OpenGL 4.1
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+        #endif
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 		return true;
@@ -34,14 +40,16 @@ bool WindowManager::SetupWindow(const std::string& titel, uint16 width, uint16 h
 		glfwMakeContextCurrent(_window);
 		std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 
-		// GLEW init only works after a OpenGL context was created
+        #ifdef _WIN32
+        // GLEW init only works after a OpenGL context was created
 		if (glewInit() != GLEW_OK)
 			throw GameException("GLEW Error on init");
 
 		// Setup global Error/Warning debug output
 		glEnable(GL_DEBUG_OUTPUT);
 		glDebugMessageCallback(GlobalErrorCallback::OpenGlCallback, 0);
-
+        #endif
+        
 		// Enable V-Sync
 		glfwSwapInterval(1);
 

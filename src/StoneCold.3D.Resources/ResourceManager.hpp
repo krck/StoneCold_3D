@@ -2,8 +2,10 @@
 #ifndef STONECOLD_RESOURCEMANAGER_H
 #define STONECOLD_RESOURCEMANAGER_H
 
-
+#ifdef _WIN32
 #include <windows.h>
+#endif
+
 #include <unordered_map>
 #include <algorithm>
 #include <string>
@@ -15,11 +17,11 @@
 #include <memory>
 
 #include "stb_image.h"
-#include <glm\glm.hpp>
-#include <glm\gtc\matrix_transform.hpp>
-#include <assimp\Importer.hpp>
-#include <assimp\scene.h>
-#include <assimp\postprocess.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
 #include "StoneColdBase.hpp"
 #include "Enums.hpp"

@@ -1,4 +1,4 @@
-StoneCold (2D Game and Engine)
+StoneCold (3D Game and Engine)
 ==============================
 
 # Table of Contents  
