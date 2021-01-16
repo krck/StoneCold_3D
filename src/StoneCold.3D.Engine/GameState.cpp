@@ -10,6 +10,7 @@ GameState::GameState(uint16 maxEntities, EngineCore* engine, glm::mat4 gameProje
 	, _mapTiles(std::vector<entityId>())
 	, _renderDefault(nullptr)
 	, _renderDefaultNoTex(nullptr)
+    , _renderSystemInstanced(nullptr)
 	, _transformationSystem(nullptr)
 	, _player(0)
 	, _projection(gameProjection)
@@ -22,11 +23,13 @@ void GameState::Initialize() {
 	// Create all Systems needed by the GameState ECS (keep ptr variables for quick access)
 	_renderDefault = std::make_shared<RenderSystemDefault>(_ecs);
 	_renderDefaultNoTex = std::make_shared<RenderSystemDefaultNoTex>(_ecs);
+    _renderSystemInstanced = std::make_shared<RenderSystemInstanced>(_ecs);
 	_transformationSystem = std::make_shared<TransformationSystem>(_ecs);
 
 	// Add all the GameState Systems to the ECS
 	_ecs.AddSystem<RenderSystemDefault>(_renderDefault);
 	_ecs.AddSystem<RenderSystemDefaultNoTex>(_renderDefaultNoTex);
+    _ecs.AddSystem<RenderSystemInstanced>(_renderSystemInstanced);
 	_ecs.AddSystem<TransformationSystem>(_transformationSystem);
 }
 
@@ -77,6 +80,7 @@ void GameState::Update(uint64 frameTime) {
 
 void GameState::Render() {
 	_renderDefaultNoTex->Render(_projection, _camera.GetViewMatrix());
+    _renderSystemInstanced->Render(_projection, _camera.GetViewMatrix());
 	_renderDefault->Render(_projection, _camera.GetViewMatrix());
 }
 

@@ -40,6 +40,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D017A50525B3244E00DEED6D /* DefaultShaderInstanced.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DefaultShaderInstanced.hpp; sourceTree = "<group>"; };
+		D017A50625B3264500DEED6D /* RenderSystemInstanced.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RenderSystemInstanced.hpp; sourceTree = "<group>"; };
 		D02169CE25B23401001B0C1F /* MeshResource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MeshResource.hpp; sourceTree = "<group>"; };
 		D02169CF25B23401001B0C1F /* ResourceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResourceManager.cpp; sourceTree = "<group>"; };
 		D02169D025B23401001B0C1F /* ResourceManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ResourceManager.hpp; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 			children = (
 				D0A2F5AE25B212430097A121 /* System.hpp */,
 				D0A2F5AD25B212430097A121 /* RenderSystemDefault.hpp */,
+				D017A50625B3264500DEED6D /* RenderSystemInstanced.hpp */,
 				D0A2F5B125B212430097A121 /* RenderSystemDefaultNoTex.hpp */,
 				D0A2F5BF25B212430097A121 /* TransformationSystem.hpp */,
 				D0A2F5B325B212430097A121 /* Components.hpp */,
@@ -553,6 +556,7 @@
 				D0A2F5B925B212430097A121 /* Shader.hpp */,
 				D0A2F5BC25B212430097A121 /* DefaultShader.hpp */,
 				D0A2F5A625B212430097A121 /* DefaultShaderNoTex.hpp */,
+				D017A50525B3244E00DEED6D /* DefaultShaderInstanced.hpp */,
 			);
 			name = Shader;
 			sourceTree = "<group>";

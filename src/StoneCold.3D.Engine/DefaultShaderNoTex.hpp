@@ -21,8 +21,7 @@ namespace StoneCold::Engine {
 			"uniform mat4 u_view;"
 			"\n"
 			"void main() {"
-			"	vec4 objPosition = u_transform * vec4(position, 1.0);"
-			"	gl_Position = u_projection * u_view * objPosition;"
+            "    gl_Position = u_projection * u_view * (u_transform * vec4(position, 1.0));"
 			"}";
 
 		const std::string _fragmentShader =

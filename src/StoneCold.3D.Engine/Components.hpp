@@ -28,6 +28,10 @@ namespace StoneCold::Engine {
 		uint32 SpecularMapId;
 	};
 
+    struct InstanceComponent {
+        uint64 InstanceCount;
+    };
+    
 	//
 	// TransformationComponent holding any Objects Position within the Game World
 	//

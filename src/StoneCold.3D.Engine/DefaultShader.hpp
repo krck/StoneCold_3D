@@ -23,8 +23,7 @@ namespace StoneCold::Engine {
 			"out vec2 textureCoords;"
 			"\n"
 			"void main() {"
-			"	vec4 objPosition = u_transform * vec4(position, 1.0);"
-			"	gl_Position = u_projection * u_view * objPosition;"
+			"	gl_Position = u_projection * u_view * (u_transform * vec4(position, 1.0));"
 			"	textureCoords = texCoords;"
 			"}";
 
@@ -42,8 +41,6 @@ namespace StoneCold::Engine {
 			"	vec4 textureColor = texture(u_textureDiffuse, textureCoords);"
 			"	color = textureColor;"
 			"}";
-
-
 
 	public:
 		DefaultShader() : Shader() {

@@ -16,8 +16,9 @@ namespace StoneCold::Engine {
 	// Workaround to set a additional Entity mask without a specific Component 
 	// (adding a Component always means adding a full Array of n Components)
 	//
-	static const bitMask64 MASK_SHADER_DEFAULTNOTEX =	0x8000000000000000;
-	static const bitMask64 MASK_SHADER_DEFAULT =		0x4000000000000000;
+	static const bitMask64 MASK_SHADER_DEFAULTNOTEX =	    0x8000000000000000;
+	static const bitMask64 MASK_SHADER_DEFAULT =		    0x4000000000000000;
+    static const bitMask64 MASK_SHADER_DEFAULTINSTANCED =   0x2000000000000000;
 
 	//
 	// Component (Bit-)Masks
@@ -26,14 +27,8 @@ namespace StoneCold::Engine {
 		{ GetTypeHash<MeshComponent>(),						0x0000000000000001 },
 		{ GetTypeHash<TextureComponent>(),					0x0000000000000002 },
 		{ GetTypeHash<TransformationComponent>(),			0x0000000000000004 },
-		{ GetTypeHash<VelocityComponent>(),					0x0000000000000008 }
-		//{ GetTypeHash<SpriteLayeredComponent>(),			0x0000000000000010 },
-		//{ GetTypeHash<TransformationComponent>(),			0x0000000000000020 },
-		//{ GetTypeHash<VelocityComponent>(),				0x0000000000000040 },
-		//{ GetTypeHash<ScreenPositionComponent>(),			0x0000000000000080 },
-		//{ GetTypeHash<ScreenPositionLayeredComponent>(),	0x0000000000000100 },
-		//{ GetTypeHash<EnemyStateComponent>(),				0x0000000000000200 }
-		//{ GetTypeHash<EnemyStateComponent>(),				0x0000000000000200 }
+		{ GetTypeHash<VelocityComponent>(),					0x0000000000000008 },
+		{ GetTypeHash<InstanceComponent>(),			        0x0000000000000010 }
 		});
 
 	template<typename T>
@@ -55,6 +50,7 @@ namespace StoneCold::Engine {
 			_world.insert({ GetTypeHash<TextureComponent>(), std::make_shared<EntityComponentArray<TextureComponent>>(maxEntities) });
 			_world.insert({ GetTypeHash<TransformationComponent>(), std::make_shared<EntityComponentArray<TransformationComponent>>(maxEntities) });
 			_world.insert({ GetTypeHash<VelocityComponent>(), std::make_shared<EntityComponentArray<VelocityComponent>>(maxEntities) });
+            _world.insert({ GetTypeHash<InstanceComponent>(), std::make_shared<EntityComponentArray<InstanceComponent>>(maxEntities) });
 		}
 
 		EntityComponentWorld(const EntityComponentWorld&) = delete;
