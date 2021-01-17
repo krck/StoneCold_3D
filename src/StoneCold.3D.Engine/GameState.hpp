@@ -9,7 +9,6 @@
 #include "EngineCore.hpp"
 #include "RenderSystemDefault.hpp"
 #include "RenderSystemInstanced.hpp"
-#include "RenderSystemDefaultNoTex.hpp"
 #include "TransformationSystem.hpp"
 #include "Camera.hpp"
 
@@ -45,9 +44,8 @@ private:
 	std::vector<entityId> _mapTiles;
 	glm::mat4 _projection;
 	// System ptrs for fast access
-	std::shared_ptr<RenderSystemDefaultNoTex> _renderDefaultNoTex;
+    std::shared_ptr<RenderSystemDefault> _renderSystemDefault;
     std::shared_ptr<RenderSystemInstanced> _renderSystemInstanced;
-	std::shared_ptr<RenderSystemDefault> _renderDefault;
 	std::shared_ptr<TransformationSystem> _transformationSystem;
 };
 

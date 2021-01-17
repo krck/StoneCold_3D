@@ -85,7 +85,7 @@ std::shared_ptr<MeshResource> ResourceManager::LoadMeshResource(const std::strin
 
 	// Parse the .obj file data
 	Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(fullPath, aiProcess_CalcTangentSpace);
+	const aiScene* scene = importer.ReadFile(fullPath, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 	if (scene != nullptr) {
 		// Get only the first mesh
 		const aiMesh* mesh = scene->mMeshes[0];
@@ -99,6 +99,7 @@ std::shared_ptr<MeshResource> ResourceManager::LoadMeshResource(const std::strin
 			tmpvec.Normal.z = mesh->mNormals[i].z;
 			// default values for tangents and texture coords
 			tmpvec.Tangent = glm::vec3();
+            tmpvec.BiTangent = glm::vec3();
 			tmpvec.TextureCoords = glm::vec2();
 			tmpVertices.push_back(tmpvec);
 		}
@@ -173,6 +174,9 @@ MeshResource ResourceManager::ProcessAssimpMesh(aiMesh* mesh, const aiScene* sce
 		tmpvec.Tangent.x = mesh->mTangents[i].x;
 		tmpvec.Tangent.y = mesh->mTangents[i].y;
 		tmpvec.Tangent.z = mesh->mTangents[i].z;
+        tmpvec.BiTangent.x = mesh->mBitangents[i].x;
+        tmpvec.BiTangent.y = mesh->mBitangents[i].y;
+        tmpvec.BiTangent.z = mesh->mBitangents[i].z;
 		if (mesh->mTextureCoords[0]) {
 			tmpvec.TextureCoords.x = mesh->mTextureCoords[0][i].x;
 			tmpvec.TextureCoords.y = mesh->mTextureCoords[0][i].y;
@@ -213,10 +217,10 @@ MeshResource ResourceManager::ProcessAssimpMesh(aiMesh* mesh, const aiScene* sce
 		if (!textureName.length() || !IsResourceLoaded(textureName)) {
 			// Get each part of the Texture if the "overall" TextureResource did not exist
 			uint32 textureDiffuse = ProcessAssimpTexture(material, dir, aiTextureType_DIFFUSE);
+            uint32 textureNormal = ProcessAssimpTexture(material, dir, aiTextureType_HEIGHT);
 			uint32 textureSpecular = ProcessAssimpTexture(material, dir, aiTextureType_SPECULAR);
-			uint32 textureNormal = ProcessAssimpTexture(material, dir, aiTextureType_HEIGHT);
 
-			auto tmpTexture = std::make_shared<TextureResource>(TextureResource(textureName, tmpMat, textureDiffuse, textureSpecular, textureNormal));
+			auto tmpTexture = std::make_shared<TextureResource>(TextureResource(textureName, tmpMat, textureDiffuse, textureNormal, textureSpecular));
 			_resources.insert({ textureName, tmpTexture });
 			_resouceLifetimes[resourceLifeTime].push_back(textureName);
 			texture = tmpTexture.get();

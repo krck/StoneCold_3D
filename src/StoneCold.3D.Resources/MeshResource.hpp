@@ -44,9 +44,11 @@ namespace StoneCold::Resources {
 			glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, Normal));
 			glEnableVertexAttribArray(1);
 			glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, Tangent));
-			glEnableVertexAttribArray(2);
-			glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, TextureCoords));
+            glEnableVertexAttribArray(2);
+            glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, BiTangent));
 			glEnableVertexAttribArray(3);
+			glVertexAttribPointer(4, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, TextureCoords));
+			glEnableVertexAttribArray(4);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 			// Load data into the index buffer
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
@@ -55,6 +57,8 @@ namespace StoneCold::Resources {
 			glBindVertexArray(0);
 		}
         
+        //
+        // Add additional Instance Array Buffer
         //
         // In case one Mesh needs to be rendered thousands or ten-thousands of times
         // add another Buffer with transformation matrices for each of the instances
@@ -69,19 +73,21 @@ namespace StoneCold::Resources {
                 
                 // Set transformation matrices as an instance vertex attribute (4 times vec4 with divisor 1)
                 glBindVertexArray(_vao);
-                glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (GLvoid*)0);
-                glEnableVertexAttribArray(4);
-                glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (GLvoid*)(sizeof(glm::vec4)));
+                glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (GLvoid*)0);
                 glEnableVertexAttribArray(5);
-                glVertexAttribPointer(6, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (GLvoid*)(2 * sizeof(glm::vec4)));
+                glVertexAttribPointer(6, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (GLvoid*)(sizeof(glm::vec4)));
                 glEnableVertexAttribArray(6);
-                glVertexAttribPointer(7, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (GLvoid*)(3 * sizeof(glm::vec4)));
+                glVertexAttribPointer(7, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (GLvoid*)(2 * sizeof(glm::vec4)));
                 glEnableVertexAttribArray(7);
+                glVertexAttribPointer(8, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (GLvoid*)(3 * sizeof(glm::vec4)));
+                glEnableVertexAttribArray(8);
 
-                glVertexAttribDivisor(4, 1);
+                // Divisor is set to tell OpenGL when to update the content of the Vertex Shader. With this
+                // set to 1 the Vertex Shader Attributes will be updated on every render of a new instance
                 glVertexAttribDivisor(5, 1);
                 glVertexAttribDivisor(6, 1);
                 glVertexAttribDivisor(7, 1);
+                glVertexAttribDivisor(8, 1);
 
                 glBindBuffer(GL_ARRAY_BUFFER, 0);
                 glBindVertexArray(0);

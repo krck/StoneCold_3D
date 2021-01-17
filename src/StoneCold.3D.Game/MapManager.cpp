@@ -6,15 +6,6 @@ using namespace StoneCold::Game;
 
 
 std::vector<glm::vec3> MapManager::GenerateMap(LevelType type, const glm::ivec2& mapSize) {
-	// Set _grid size and create a _grid with empty spaces and reset the _walkers
-	//_mapSize = size;
-	//_grid = 
-	//_walkers = std::vector<Walker>();
-
-	//CreateFloor(randomDirValue, randomUpdateValue);
-	//CreateWalls();
-	//SetFinalMapTiles();
-
 	// Create a map grid with default tiles
 	auto tiles = std::vector<std::vector<MapTileTypes>>(mapSize.x, std::vector<MapTileTypes>(mapSize.y, MapTileTypes::Block));
 	switch (type)
@@ -36,7 +27,7 @@ std::vector<glm::vec3> MapManager::GenerateMap(LevelType type, const glm::ivec2&
 		for (float y = 0; y < mapSize.y; y++) {
 			if (tiles[x][y] == MapTileTypes::Block)
 				map.push_back(glm::vec3(x, y, 1.0f));		// Map
-			else
+		    else
 				map.push_back(glm::vec3(x, y, 0.0f));		// Floor
 		}
 	}
@@ -67,7 +58,7 @@ void MapManager::CreateMap_DrunkardWalk(const glm::ivec2& mapSize, std::vector<s
 
 	float random = 0.f;
 	float blockCount = 0.f;
-	for (int iterations = 0; iterations < 100000; iterations++) {
+	for (int iterations = 0; iterations < 500000; iterations++) {
 		// Random chance: Destroy a Walker (Only if its not the only one, and at a low chance)
 		random = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
 		if (random < chanceWalkerUpdate && walkers.size() > 1) {
@@ -106,8 +97,10 @@ void MapManager::CreateMap_DrunkardWalk(const glm::ivec2& mapSize, std::vector<s
 		}
 
 		// Calculate the Percentage of tiles that are "Floor" and exit if enough is filled
-		if ((blockCount / (float)(mapSize.x * mapSize.y)) > percentToFill)
-			break;
+		if ((blockCount / (float)(mapSize.x * mapSize.y)) > percentToFill) {
+            
+            break;
+        }
 	}
 }
 

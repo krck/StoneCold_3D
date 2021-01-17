@@ -40,7 +40,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D017A50525B3244E00DEED6D /* DefaultShaderInstanced.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DefaultShaderInstanced.hpp; sourceTree = "<group>"; };
+		D017A50525B3244E00DEED6D /* ShaderInstanced.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShaderInstanced.hpp; sourceTree = "<group>"; };
 		D017A50625B3264500DEED6D /* RenderSystemInstanced.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RenderSystemInstanced.hpp; sourceTree = "<group>"; };
 		D02169CE25B23401001B0C1F /* MeshResource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MeshResource.hpp; sourceTree = "<group>"; };
 		D02169CF25B23401001B0C1F /* ResourceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResourceManager.cpp; sourceTree = "<group>"; };
@@ -400,7 +400,6 @@
 		D0A2F5A325B212430097A121 /* EngineCore.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EngineCore.hpp; sourceTree = "<group>"; };
 		D0A2F5A425B212430097A121 /* DecisionTee.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DecisionTee.hpp; sourceTree = "<group>"; };
 		D0A2F5A525B212430097A121 /* GameState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameState.hpp; sourceTree = "<group>"; };
-		D0A2F5A625B212430097A121 /* DefaultShaderNoTex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DefaultShaderNoTex.hpp; sourceTree = "<group>"; };
 		D0A2F5A725B212430097A121 /* EntityComponentArray.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EntityComponentArray.hpp; sourceTree = "<group>"; };
 		D0A2F5A825B212430097A121 /* IntroState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IntroState.cpp; sourceTree = "<group>"; };
 		D0A2F5A925B212430097A121 /* Keyboard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Keyboard.hpp; sourceTree = "<group>"; };
@@ -411,7 +410,6 @@
 		D0A2F5AE25B212430097A121 /* System.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = System.hpp; sourceTree = "<group>"; };
 		D0A2F5AF25B212430097A121 /* MessageService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MessageService.hpp; sourceTree = "<group>"; };
 		D0A2F5B025B212430097A121 /* WindowManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WindowManager.hpp; sourceTree = "<group>"; };
-		D0A2F5B125B212430097A121 /* RenderSystemDefaultNoTex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RenderSystemDefaultNoTex.hpp; sourceTree = "<group>"; };
 		D0A2F5B225B212430097A121 /* EntityComponentSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityComponentSystem.cpp; sourceTree = "<group>"; };
 		D0A2F5B325B212430097A121 /* Components.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Components.hpp; sourceTree = "<group>"; };
 		D0A2F5B425B212430097A121 /* Mouse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Mouse.hpp; sourceTree = "<group>"; };
@@ -421,7 +419,7 @@
 		D0A2F5B925B212430097A121 /* Shader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
 		D0A2F5BA25B212430097A121 /* MenuState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuState.hpp; sourceTree = "<group>"; };
 		D0A2F5BB25B212430097A121 /* EngineCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EngineCore.cpp; sourceTree = "<group>"; };
-		D0A2F5BC25B212430097A121 /* DefaultShader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DefaultShader.hpp; sourceTree = "<group>"; };
+		D0A2F5BC25B212430097A121 /* ShaderDefault.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShaderDefault.hpp; sourceTree = "<group>"; };
 		D0A2F5BD25B212430097A121 /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
 		D0A2F5BE25B212430097A121 /* DecisionTee.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DecisionTee.cpp; sourceTree = "<group>"; };
 		D0A2F5BF25B212430097A121 /* TransformationSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TransformationSystem.hpp; sourceTree = "<group>"; };
@@ -524,7 +522,6 @@
 				D0A2F5AE25B212430097A121 /* System.hpp */,
 				D0A2F5AD25B212430097A121 /* RenderSystemDefault.hpp */,
 				D017A50625B3264500DEED6D /* RenderSystemInstanced.hpp */,
-				D0A2F5B125B212430097A121 /* RenderSystemDefaultNoTex.hpp */,
 				D0A2F5BF25B212430097A121 /* TransformationSystem.hpp */,
 				D0A2F5B325B212430097A121 /* Components.hpp */,
 			);
@@ -554,9 +551,8 @@
 			isa = PBXGroup;
 			children = (
 				D0A2F5B925B212430097A121 /* Shader.hpp */,
-				D0A2F5BC25B212430097A121 /* DefaultShader.hpp */,
-				D0A2F5A625B212430097A121 /* DefaultShaderNoTex.hpp */,
-				D017A50525B3244E00DEED6D /* DefaultShaderInstanced.hpp */,
+				D0A2F5BC25B212430097A121 /* ShaderDefault.hpp */,
+				D017A50525B3244E00DEED6D /* ShaderInstanced.hpp */,
 			);
 			name = Shader;
 			sourceTree = "<group>";

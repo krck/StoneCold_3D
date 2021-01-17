@@ -87,25 +87,25 @@ void SimulationManager::CreateGameState() {
 
 		// Get all external Resources needed by the GameState (Player Character, Player GUI, etc.)
         #ifdef _WIN32
-        std::string coordsPath = "models\\coordinates\\";
+        std::string charPath = "models\\test_char\\";
         std::string cubePath = "models\\map_cube\\";
         #else
-        std::string coordsPath = "models/coordinates/";
+        std::string charPath = "models/test_char/";
         std::string cubePath = "models/map_cube/";
         #endif
         
-		auto coordsModel = _resourceManager->LoadResource<MeshResource>(ResourceLifeTime::Game, (coordsPath + "coordinates.obj"));
+		auto charModel = _resourceManager->LoadResource<ModelResource>(ResourceLifeTime::Game, (charPath + "test_char.obj"));
 		auto cubeModel = _resourceManager->LoadResource<ModelResource>(ResourceLifeTime::Game, (cubePath + "map_cube.obj"));
 
 		// -----------------------------------------------------
 		// ----------- GAME - GAME-OBJECT - Map Tiles ----------
 		// -----------------------------------------------------
-		auto map = std::move(_mapManager->GenerateMap(LevelType::Grassland, glm::ivec2(100, 100)));
+        auto map = _mapManager->GenerateMap(LevelType::Grassland, glm::ivec2(100, 100));
         std::vector<glm::mat4> instances;
         instances.reserve((100 * 100) * 2);
 		for (const auto& m : map) {
             auto cubeTransformation = glm::mat4(1.0f);
-            cubeTransformation = glm::scale(cubeTransformation, glm::vec3(1.0f));
+            cubeTransformation = glm::scale(cubeTransformation, glm::vec3(2.0f));
             cubeTransformation = glm::translate(cubeTransformation, glm::vec3(m.x, m.z, m.y));
             instances.push_back(cubeTransformation);
 		}
@@ -122,15 +122,19 @@ void SimulationManager::CreateGameState() {
 		// -----------------------------------------------------
 		// ------- GAME - GAME-OBJECT - Player Character -------
 		// -----------------------------------------------------
-		// Coordinates Model data and ECS Components
-		auto coordinates = gameECS->CreateEntity();
-		auto coordTransformation = glm::mat4(1.0f);
-		coordTransformation = glm::scale(coordTransformation, glm::vec3(1.0f));
-		coordTransformation = glm::translate(coordTransformation, glm::vec3(0.0f, 0.0f, 0.0f));
-		//transformation = glm::rotate(transformation, t.Angle, t.Rotation);s
-		gameECS->AddAdditionalSystemMask(coordinates, MASK_SHADER_DEFAULTNOTEX);
-		gameECS->AddComponent<MeshComponent>(coordinates, { coordsModel->GetVAO(), coordsModel->GetEBO(), coordsModel->GetSize() });
-		gameECS->AddComponent<TransformationComponent>(coordinates, { coordTransformation });
+		// Char Model data and ECS Components
+        for (MeshResource charMesh : charModel->Model) {
+            auto charE = gameECS->CreateEntity();
+            auto charTransformation = glm::mat4(1.0f);
+            charTransformation = glm::translate(charTransformation, glm::vec3(100.0f, 0.0f, 100.0f));
+            charTransformation = glm::scale(charTransformation, glm::vec3(0.5f));
+            //transformation = glm::rotate(transformation, t.Angle, t.Rotation);s
+            gameECS->AddAdditionalSystemMask(charE, MASK_SHADER_DEFAULT);
+            gameECS->AddComponent<MeshComponent>(charE, { charMesh.GetVAO(), charMesh.GetEBO(), charMesh.GetSize() });
+            gameECS->AddComponent<TransformationComponent>(charE, { charTransformation });
+            if(charMesh.Texture != nullptr)
+            gameECS->AddComponent<TextureComponent>(charE, { charMesh.Texture->GetTextureId(), charMesh.Texture->GetNormalMapId(), cubeMesh.Texture->GetSpecularMapId() });
+        }
 
 		//game->SetEntities(player, mapTiles);
 
