@@ -16,9 +16,9 @@ namespace StoneCold::Engine {
 	// Workaround to set a additional Entity mask without a specific Component 
 	// (adding a Component always means adding a full Array of n Components)
 	//
-	static const bitMask64 MASK_SHADER_DEFAULTNOTEX =	    0x8000000000000000;
+	static const bitMask64 MASK_SHADER_MAP =	            0x8000000000000000;
 	static const bitMask64 MASK_SHADER_DEFAULT =		    0x4000000000000000;
-    static const bitMask64 MASK_SHADER_DEFAULTINSTANCED =   0x2000000000000000;
+    static const bitMask64 MASK_SHADER_INSTANCED =          0x2000000000000000;
 
 	//
 	// Component (Bit-)Masks

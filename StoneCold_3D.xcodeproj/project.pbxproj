@@ -10,12 +10,12 @@
 		D02169D625B23401001B0C1F /* ResourceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D02169CF25B23401001B0C1F /* ResourceManager.cpp */; };
 		D02169E225B2340A001B0C1F /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D02169D725B23409001B0C1F /* Application.cpp */; };
 		D02169E325B2340A001B0C1F /* AiManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D02169DA25B23409001B0C1F /* AiManager.cpp */; };
-		D02169E425B2340A001B0C1F /* MapManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D02169DB25B23409001B0C1F /* MapManager.cpp */; };
 		D02169E525B2340A001B0C1F /* GameCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D02169DE25B2340A001B0C1F /* GameCore.cpp */; };
 		D02169E625B2340A001B0C1F /* SimulationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D02169E125B2340A001B0C1F /* SimulationManager.cpp */; };
 		D02169EE25B23646001B0C1F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02169ED25B23646001B0C1F /* OpenGL.framework */; };
 		D0216B4325B2366C001B0C1F /* libassimp.3.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0216A2325B2365F001B0C1F /* libassimp.3.3.1.dylib */; };
 		D0216B4525B2371D001B0C1F /* MenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0216B4425B2371D001B0C1F /* MenuState.cpp */; };
+		D06468F425C6B35100DA3326 /* MapManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D06468F325C6B35100DA3326 /* MapManager.cpp */; };
 		D078C97C25B23B5700853741 /* Exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D078C97A25B23B5700853741 /* Exception.cpp */; };
 		D078C97E25B23FB600853741 /* libglfw3.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0216A2825B2365F001B0C1F /* libglfw3.3.2.dylib */; };
 		D0A2F5D125B212430097A121 /* IntroState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0A2F5A825B212430097A121 /* IntroState.cpp */; };
@@ -52,8 +52,6 @@
 		D02169D825B23409001B0C1F /* SimulationManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimulationManager.hpp; sourceTree = "<group>"; };
 		D02169D925B23409001B0C1F /* GameCore.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameCore.hpp; sourceTree = "<group>"; };
 		D02169DA25B23409001B0C1F /* AiManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AiManager.cpp; sourceTree = "<group>"; };
-		D02169DB25B23409001B0C1F /* MapManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapManager.cpp; sourceTree = "<group>"; };
-		D02169DD25B2340A001B0C1F /* MapManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MapManager.hpp; sourceTree = "<group>"; };
 		D02169DE25B2340A001B0C1F /* GameCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCore.cpp; sourceTree = "<group>"; };
 		D02169DF25B2340A001B0C1F /* AiManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AiManager.hpp; sourceTree = "<group>"; };
 		D02169E125B2340A001B0C1F /* SimulationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimulationManager.cpp; sourceTree = "<group>"; };
@@ -386,6 +384,9 @@
 		D0216B4425B2371D001B0C1F /* MenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuState.cpp; sourceTree = "<group>"; };
 		D042851925B212A800524F11 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		D042851A25B212A800524F11 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D06468F125C6935C00DA3326 /* ShaderMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShaderMap.hpp; sourceTree = "<group>"; };
+		D06468F225C6B35100DA3326 /* MapManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MapManager.hpp; sourceTree = "<group>"; };
+		D06468F325C6B35100DA3326 /* MapManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapManager.cpp; sourceTree = "<group>"; };
 		D078C97725B23B5600853741 /* Exception.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Exception.hpp; sourceTree = "<group>"; };
 		D078C97825B23B5700853741 /* Enums.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Enums.hpp; sourceTree = "<group>"; };
 		D078C97925B23B5700853741 /* EnumHelper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EnumHelper.hpp; sourceTree = "<group>"; };
@@ -425,6 +426,8 @@
 		D0A2F5BF25B212430097A121 /* TransformationSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TransformationSystem.hpp; sourceTree = "<group>"; };
 		D0A2F5C025B212430097A121 /* IntroState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IntroState.hpp; sourceTree = "<group>"; };
 		D0A2F5C125B212430097A121 /* Camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
+		D0EC9CB825C5EB90007BC158 /* MapResource.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MapResource.hpp; sourceTree = "<group>"; };
+		D0EC9CB925C5F94A007BC158 /* RenderSystemMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RenderSystemMap.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,8 +511,8 @@
 			isa = PBXGroup;
 			children = (
 				D02169C425B23097001B0C1F /* Systems */,
-				D0A2F5A725B212430097A121 /* EntityComponentArray.hpp */,
 				D0A2F5AC25B212430097A121 /* EntityComponentWorld.hpp */,
+				D0A2F5A725B212430097A121 /* EntityComponentArray.hpp */,
 				D0A2F5B825B212430097A121 /* EntityComponentSystem.hpp */,
 				D0A2F5B225B212430097A121 /* EntityComponentSystem.cpp */,
 			);
@@ -520,6 +523,7 @@
 			isa = PBXGroup;
 			children = (
 				D0A2F5AE25B212430097A121 /* System.hpp */,
+				D0EC9CB925C5F94A007BC158 /* RenderSystemMap.hpp */,
 				D0A2F5AD25B212430097A121 /* RenderSystemDefault.hpp */,
 				D017A50625B3264500DEED6D /* RenderSystemInstanced.hpp */,
 				D0A2F5BF25B212430097A121 /* TransformationSystem.hpp */,
@@ -551,6 +555,7 @@
 			isa = PBXGroup;
 			children = (
 				D0A2F5B925B212430097A121 /* Shader.hpp */,
+				D06468F125C6935C00DA3326 /* ShaderMap.hpp */,
 				D0A2F5BC25B212430097A121 /* ShaderDefault.hpp */,
 				D017A50525B3244E00DEED6D /* ShaderInstanced.hpp */,
 			);
@@ -571,8 +576,6 @@
 			children = (
 				D02169D825B23409001B0C1F /* SimulationManager.hpp */,
 				D02169E125B2340A001B0C1F /* SimulationManager.cpp */,
-				D02169DD25B2340A001B0C1F /* MapManager.hpp */,
-				D02169DB25B23409001B0C1F /* MapManager.cpp */,
 				D02169DA25B23409001B0C1F /* AiManager.cpp */,
 				D02169DF25B2340A001B0C1F /* AiManager.hpp */,
 			);
@@ -594,6 +597,8 @@
 			children = (
 				D02169D025B23401001B0C1F /* ResourceManager.hpp */,
 				D02169CF25B23401001B0C1F /* ResourceManager.cpp */,
+				D06468F225C6B35100DA3326 /* MapManager.hpp */,
+				D06468F325C6B35100DA3326 /* MapManager.cpp */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -602,6 +607,7 @@
 			isa = PBXGroup;
 			children = (
 				D02169D325B23401001B0C1F /* Resource.hpp */,
+				D0EC9CB825C5EB90007BC158 /* MapResource.hpp */,
 				D02169CE25B23401001B0C1F /* MeshResource.hpp */,
 				D02169D225B23401001B0C1F /* ModelResource.hpp */,
 				D02169D125B23401001B0C1F /* TextureResource.hpp */,
@@ -1188,12 +1194,12 @@
 			files = (
 				D0A2F5D425B212430097A121 /* WindowManager.cpp in Sources */,
 				D0A2F5D125B212430097A121 /* IntroState.cpp in Sources */,
+				D06468F425C6B35100DA3326 /* MapManager.cpp in Sources */,
 				D02169E225B2340A001B0C1F /* Application.cpp in Sources */,
 				D0A2F5D225B212430097A121 /* Camera.cpp in Sources */,
 				D0A2F5D725B212430097A121 /* DecisionTee.cpp in Sources */,
 				D02169D625B23401001B0C1F /* ResourceManager.cpp in Sources */,
 				D02169E325B2340A001B0C1F /* AiManager.cpp in Sources */,
-				D02169E425B2340A001B0C1F /* MapManager.cpp in Sources */,
 				D02169E525B2340A001B0C1F /* GameCore.cpp in Sources */,
 				D0A2F5D525B212430097A121 /* EngineCore.cpp in Sources */,
 				D0A2F5D625B212430097A121 /* GameState.cpp in Sources */,

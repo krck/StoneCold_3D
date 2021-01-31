@@ -94,7 +94,7 @@ int GameCore::Run() {
 				averageFPS = 0.f;
 				for (uint8 i = 0; i < frameTimeSize; i++) { averageFPS += frameTimes[i]; }
 				averageFPS = 1000.f / (averageFPS / frameTimeSize);
-				std::cout << "FPS: " << (uint16)averageFPS << "\n";
+			    std::cout << "FPS: " << (uint16)averageFPS << "\n";
 			}
 			timeStamp_old = timeStamp_new;
 		}

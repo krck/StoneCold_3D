@@ -12,6 +12,8 @@
 #define KEY_CODES               512
 #define KEY_BUFFER_SZ           4
 
+#define CHUNK_SIZE              32
+
 #define MIP_MAPPING             0
 #define ANISOTROPIC_FILTERING   0
 

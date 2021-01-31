@@ -27,6 +27,7 @@
 #include "Enums.hpp"
 #include "Settings.hpp"
 #include "Exception.hpp"
+#include "MapResource.hpp"
 #include "MeshResource.hpp"
 #include "ModelResource.hpp"
 #include "TextureResource.hpp"

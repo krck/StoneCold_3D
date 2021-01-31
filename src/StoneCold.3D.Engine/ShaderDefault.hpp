@@ -127,8 +127,8 @@ namespace StoneCold::Engine {
          "   float cosAlpha = clamp( dot( E,R ), 0,1 );"
          ""
              // Ambient : simulates indirect lighting + Diffuse : "color" of the object + Specular : reflective highlight, like a mirror
-         "   color = MaterialAmbientColor + ((MaterialDiffuseColor * LightColor * LightPower * cosTheta) / distance);"
-        // "   //MaterialSpecularColor * LightColor * LightPower * pow(cosAlpha,5) / (distance*distance);"
+        // "   color = MaterialAmbientColor + ((MaterialDiffuseColor * LightColor * LightPower * cosTheta) / distance);"
+        "   color = vec3(1.0, 1.0, 0.0);"
          "}";
 
 	public:

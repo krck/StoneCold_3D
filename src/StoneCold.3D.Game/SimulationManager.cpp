@@ -88,37 +88,35 @@ void SimulationManager::CreateGameState() {
 		// Get all external Resources needed by the GameState (Player Character, Player GUI, etc.)
         #ifdef _WIN32
         std::string charPath = "models\\test_char\\";
-        std::string cubePath = "models\\map_cube\\";
+        std::string cubePath = "models\\grassCube\\";
         #else
         std::string charPath = "models/test_char/";
-        std::string cubePath = "models/map_cube/";
+        std::string cubePath = "models/grassCube/";
         #endif
         
 		auto charModel = _resourceManager->LoadResource<ModelResource>(ResourceLifeTime::Game, (charPath + "test_char.obj"));
-		auto cubeModel = _resourceManager->LoadResource<ModelResource>(ResourceLifeTime::Game, (cubePath + "map_cube.obj"));
-
+	//	auto cubeModel = _resourceManager->LoadResource<ModelResource>(ResourceLifeTime::Game, (cubePath + "grassCube.obj"));
+        auto grassTex = _resourceManager->LoadResource<TextureResource>(ResourceLifeTime::Game, "grass.png");
+        
 		// -----------------------------------------------------
 		// ----------- GAME - GAME-OBJECT - Map Tiles ----------
 		// -----------------------------------------------------
-        auto map = _mapManager->GenerateMap(LevelType::Grassland, glm::ivec2(100, 100));
-        std::vector<glm::mat4> instances;
-        instances.reserve((100 * 100) * 2);
-		for (const auto& m : map) {
-            auto cubeTransformation = glm::mat4(1.0f);
-            cubeTransformation = glm::scale(cubeTransformation, glm::vec3(2.0f));
-            cubeTransformation = glm::translate(cubeTransformation, glm::vec3(m.x, m.z, m.y));
-            instances.push_back(cubeTransformation);
-		}
-        // Cube Model data and ECS Components
-        auto cube = gameECS->CreateEntity();
-        auto cubeMesh = cubeModel->Model[0];
-        cubeMesh.AddInstanceArray(instances);
-        //transformation = glm::rotate(transformation, t.Angle, t.Rotation);s
-        gameECS->AddAdditionalSystemMask(cube, MASK_SHADER_DEFAULTINSTANCED);
-        gameECS->AddComponent<MeshComponent>(cube, { cubeMesh.GetVAO(), cubeMesh.GetEBO(), cubeMesh.GetSize() });
-        gameECS->AddComponent<InstanceComponent>(cube, { cubeMesh.GetInstanceCount() });
-        gameECS->AddComponent<TextureComponent>(cube, { cubeMesh.Texture->GetTextureId(), cubeMesh.Texture->GetNormalMapId(), cubeMesh.Texture->GetSpecularMapId() });
+        auto chunkMap = _mapManager->GenerateMap(LevelType::Grassland, glm::ivec2(256, 256), 5.0f, 5.0f);
+        for (MapMesh chunk : chunkMap) {
+            auto mapMesh = MapResource("map", chunk.first, chunk.second);
 
+            // Cube Model data and ECS Components
+            auto mapId = gameECS->CreateEntity();
+            auto mapTransformation = glm::mat4(1.0f);
+            mapTransformation = glm::translate(mapTransformation, glm::vec3(1.0f));
+            mapTransformation = glm::scale(mapTransformation, glm::vec3(2.0f));
+            //transformation = glm::rotate(transformation, t.Angle, t.Rotation);s
+            gameECS->AddAdditionalSystemMask(mapId, MASK_SHADER_MAP);
+            gameECS->AddComponent<MeshComponent>(mapId, { mapMesh.GetVAO(), mapMesh.GetEBO(), mapMesh.GetSize() });
+            gameECS->AddComponent<TransformationComponent>(mapId, { mapTransformation });
+            gameECS->AddComponent<TextureComponent>(mapId, { grassTex->GetTextureId(), 0, 0 });
+        }
+        
 		// -----------------------------------------------------
 		// ------- GAME - GAME-OBJECT - Player Character -------
 		// -----------------------------------------------------
@@ -126,14 +124,14 @@ void SimulationManager::CreateGameState() {
         for (MeshResource charMesh : charModel->Model) {
             auto charE = gameECS->CreateEntity();
             auto charTransformation = glm::mat4(1.0f);
-            charTransformation = glm::translate(charTransformation, glm::vec3(100.0f, 0.0f, 100.0f));
-            charTransformation = glm::scale(charTransformation, glm::vec3(0.5f));
+            charTransformation = glm::translate(charTransformation, glm::vec3(100.0f, 0.0f, 0.0f));
+            charTransformation = glm::scale(charTransformation, glm::vec3(5.0f));
             //transformation = glm::rotate(transformation, t.Angle, t.Rotation);s
             gameECS->AddAdditionalSystemMask(charE, MASK_SHADER_DEFAULT);
             gameECS->AddComponent<MeshComponent>(charE, { charMesh.GetVAO(), charMesh.GetEBO(), charMesh.GetSize() });
             gameECS->AddComponent<TransformationComponent>(charE, { charTransformation });
             if(charMesh.Texture != nullptr)
-            gameECS->AddComponent<TextureComponent>(charE, { charMesh.Texture->GetTextureId(), charMesh.Texture->GetNormalMapId(), cubeMesh.Texture->GetSpecularMapId() });
+            gameECS->AddComponent<TextureComponent>(charE, { charMesh.Texture->GetTextureId(), charMesh.Texture->GetNormalMapId(), charMesh.Texture->GetSpecularMapId() });
         }
 
 		//game->SetEntities(player, mapTiles);

@@ -25,42 +25,6 @@ namespace StoneCold::Resources {
 		inline uint32 GetNormalMapId() const { return _normalMap; }
 		inline uint32 GetSpecularMapId() const { return _specularMap; }
 
-		//void BindTexture() const {
-		//	glActiveTexture(GL_TEXTURE0);
-		//	glBindTexture(GL_TEXTURE_2D, _textureDiffuse);
-		//}
-
-		//void UnbindTexture() const {
-		//	glActiveTexture(GL_TEXTURE0);
-		//	glBindTexture(GL_TEXTURE_2D, 0);
-		//}
-
-		//void BindNormalMap() const {
-		//	if (_normalMap) {
-		//		glActiveTexture(GL_TEXTURE1);
-		//		glBindTexture(GL_TEXTURE_2D, _normalMap);
-		//	}
-		//}
-		//void UnbindNormalMap() const {
-		//	if (_normalMap) {
-		//		glActiveTexture(GL_TEXTURE1);
-		//		glBindTexture(GL_TEXTURE_2D, 0);
-		//	}
-		//}
-
-		//void BindSpecularMap() const {
-		//	if (_specularMap) {
-		//		glActiveTexture(GL_TEXTURE2);
-		//		glBindTexture(GL_TEXTURE_2D, _specularMap);
-		//	}
-		//}
-		//void UnbindSpecularMap() const {
-		//	if (_specularMap) {
-		//		glActiveTexture(GL_TEXTURE2);
-		//		glBindTexture(GL_TEXTURE_2D, 0);
-		//	}
-		//}
-
 		//inline void SetAmbientReflectivity(float aRef) { this->_material.AmbientReflectivity = aRef; }
 		//inline void SetDiffuseReflectivity(float dRef) { this->_material.DiffuseReflectivity = dRef; }
 		//inline void SetSpectralReflectivity(float sRef) { this->_material.SpectralReflectivity = sRef; }

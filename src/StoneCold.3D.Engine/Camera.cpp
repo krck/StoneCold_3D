@@ -13,7 +13,7 @@ Camera::Camera(const glm::vec3& pos)
 	_lastX = 0.0f;
 	_lastY = 0.0f;
 	_mouseSens = 0.5f;
-	_moveSpeed = 3.0f;
+	_moveSpeed = 5.0f;
 }
 
 
@@ -23,7 +23,7 @@ Camera::Camera(const glm::vec3& pos, const glm::vec3& up, const glm::vec3& front
 	_yaw = -90.0f;
 	_lastX = 0.0f;
 	_lastY = 0.0f;
-	_mouseSens = 0.5f;
+	_mouseSens = 1.0f;
 	_moveSpeed = 3.0f;
 }
 

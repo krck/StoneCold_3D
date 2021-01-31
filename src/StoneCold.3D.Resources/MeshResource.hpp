@@ -22,7 +22,6 @@ namespace StoneCold::Resources {
 	//
 	class MeshResource : public Resource {
 	public:
-		const std::string Directory;
 		const std::vector<Vertex> Vertices;
 		const std::vector<uint32> Indices;
 		const TextureResource* Texture;

@@ -4,6 +4,18 @@
 
 namespace StoneCold::Base {
 
+    //
+    // Faces of a default Render-Cube
+    //
+    enum class CubeFace {
+        Top,
+        Bottom,
+        Front,
+        Back,
+        Right,
+        Left
+    };
+    
 	//
 	// All possible Camera movements
 	//

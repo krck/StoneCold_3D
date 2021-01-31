@@ -51,7 +51,7 @@ bool WindowManager::SetupWindow(const std::string& titel, uint16 width, uint16 h
         #endif
         
 		// Enable V-Sync
-		glfwSwapInterval(1);
+		glfwSwapInterval(0);
 
 		// Set some OpenGL options
 		glDepthFunc(GL_LEQUAL);
@@ -59,9 +59,9 @@ bool WindowManager::SetupWindow(const std::string& titel, uint16 width, uint16 h
 		glEnable(GL_MULTISAMPLE);
 		// glEnable(GL_FRAMEBUFFER_SRGB);	gamma correction (SRGB / expotential)
 		// glEnable(GL_DEPTH_CLAMP);		check if these are still needed
-		glEnable(GL_CULL_FACE);
-		glCullFace(GL_BACK);
-		// glFrontFace(GL_CCW);
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+        glFrontFace(GL_CCW);
 
 		// Set Input-Event callbacks
 		glfwSetKeyCallback(_window, _inputManager->KeyboardCallback);
@@ -69,6 +69,9 @@ bool WindowManager::SetupWindow(const std::string& titel, uint16 width, uint16 h
 		glfwSetScrollCallback(_window, _inputManager->MouseWheelCallback);
 		glfwSetCursorEnterCallback(_window, _inputManager->MouseInWindowCallback);
 
+        // Render in Wireframe-Mode (DEBUG)
+        //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+        
 		// Disable cursor for unlimited mouse movement with the camera
 		glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
@@ -98,12 +101,12 @@ void WindowManager::ChangeWindowSize(int width, int height)
 void WindowManager::Clear() const {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+    glfwPollEvents();
 }
 
 
 void WindowManager::Update() const {
 	glfwSwapBuffers(_window);
-	glfwPollEvents();
 	_inputManager->MouseMotionCallback(_window);
 }
 

@@ -11,6 +11,51 @@ namespace StoneCold::Engine {
         const std::string _vertexShader =
         "#version 410 core"
         "\n"
+        "layout (location = 0) in vec3 aPos;"
+        "layout (location = 1) in vec3 aNormal;"
+        "layout (location = 2) in vec3 aTangent;"
+        "layout (location = 3) in vec3 aBitangent;"
+        "layout (location = 4) in vec2 aTexCoords;"
+        "layout (location = 5) in mat4 instanceMatrix;"
+        "\n"
+        "out VS_OUT {"
+        "    vec3 FragPos;"
+        "    vec2 TexCoords;"
+        "    vec3 TangentLightPos;"
+        "    vec3 TangentViewPos;"
+        "    vec3 TangentFragPos;"
+        "} vs_out;"
+        "\n"
+        "uniform mat4 projection;"
+        "uniform mat4 view;"
+        "\n"
+        "uniform vec3 lightPos;"
+        "\n"
+        "void main()"
+        "{"
+        "    vs_out.FragPos = vec3(instanceMatrix * vec4(aPos, 1.0));"
+        "    vs_out.TexCoords = aTexCoords;"
+        ""
+        "   vec3 vertexPosition_cameraspace = (view * instanceMatrix * vec4(aPos,1)).xyz;"
+        "   vec3 viewPos = vec3(0,0,0) - vertexPosition_cameraspace;"
+        ""
+        "    mat3 normalMatrix = transpose(inverse(mat3(instanceMatrix)));"
+        "    vec3 T = normalize(normalMatrix * aTangent);"
+        "    vec3 N = normalize(normalMatrix * aNormal);"
+        "    T = normalize(T - dot(T, N) * N);"
+        "    vec3 B = cross(N, T);"
+        ""
+        "    mat3 TBN = transpose(mat3(T, B, N));"
+        "    vs_out.TangentLightPos = TBN * lightPos;"
+        "    vs_out.TangentViewPos  = TBN * viewPos;"
+        "    vs_out.TangentFragPos  = TBN * vs_out.FragPos;"
+        ""
+        "    gl_Position = projection * view * instanceMatrix * vec4(aPos, 1.0);"
+        "}";
+        
+        /*
+        "#version 410 core"
+        "\n"
         // Input vertex data, different for all executions of this shader
         // instanceMatrix acts as the Model-Matrix
         "layout(location = 0) in vec3 vertexPosition_modelspace;"
@@ -68,8 +113,50 @@ namespace StoneCold::Engine {
         "   LightDirection_tangentspace = TBN * LightDirection_cameraspace;"
         "   EyeDirection_tangentspace =  TBN * EyeDirection_cameraspace;"
         "}";
-
+         */
+        
+        
         const std::string _fragmentShader =
+        "#version 410 core"
+        "\n"
+        "out vec4 FragColor;"
+        "\n"
+        "in VS_OUT {"
+        "    vec3 FragPos;"
+        "    vec2 TexCoords;"
+        "    vec3 TangentLightPos;"
+        "    vec3 TangentViewPos;"
+        "    vec3 TangentFragPos;"
+        "} fs_in;"
+        "\n"
+        "uniform sampler2D diffuseMap;"
+        "uniform sampler2D normalMap;"
+        "\n"
+        "uniform vec3 lightPos;"
+        "uniform vec3 viewPos;"
+        "\n"
+        "void main()"
+        "{"
+             // obtain normal from normal map in range [0,1]
+        "    vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;"
+            // transform normal vector to range [-1,1]
+        "    normal = normalize(normal * 2.0 - 1.0);"  // this normal is in tangent space
+        "    normal = vec3(normal.x, -normal.y, normal.z);"
+        ""
+            // get diffuse color
+        "    vec3 color = texture(diffuseMap, fs_in.TexCoords).rgb;"
+            // ambient
+        "    vec3 ambient = 0.1 * color;"
+            // diffuse
+        "    vec3 lightDir = normalize(fs_in.TangentLightPos - fs_in.TangentFragPos);"
+        "    float diff = max(dot(lightDir, normal), 0.0);"
+        "    vec3 diffuse = diff * color;"
+            // specular
+        ""
+        "    FragColor = vec4(ambient + diffuse, 1.0);"
+        "}";
+        
+        /*
         "#version 410 core"
         "\n"
         // Interpolated values from the vertex shaders
@@ -131,26 +218,27 @@ namespace StoneCold::Engine {
         "   color = MaterialAmbientColor + ((MaterialDiffuseColor * LightColor * LightPower * cosTheta) / distance);"
        // "   //MaterialSpecularColor * LightColor * LightPower * pow(cosAlpha,5) / (distance*distance);"
         "}";
-
+         */
+         
     public:
         ShaderInstanced() : Shader() {
             auto result = CreateShaderProgramm(_vertexShader, _fragmentShader);
             if (result) {
                 glUseProgram(_programId);
                 // Set the Attributes
-                AddAttribute(0, "vertexPosition_modelspace");
-                AddAttribute(1, "vertexNormal_modelspace");
-                AddAttribute(2, "vertexTangent_modelspace");
-                AddAttribute(3, "vertexBitangent_modelspace");
-                AddAttribute(4, "vertexUV");
+                AddAttribute(0, "aPos");
+                AddAttribute(1, "aNormal");
+                AddAttribute(2, "aTangent");
+                AddAttribute(3, "aBitangent");
+                AddAttribute(4, "aTexCoords");
                 AddAttribute(5, "instanceMatrix");
                 // Set Textures
-                AddUniform("u_DiffuseTextureSampler");
-                AddUniform("u_NormalTextureSampler");
+                AddUniform("diffuseMap");
+                AddUniform("normalMap");
                 // Set the Uniforms
-                AddUniform("u_ViewMatrix");
-                AddUniform("u_ProjectionMatrix");
-                AddUniform("u_LightPosition_worldspace");
+                AddUniform("view");
+                AddUniform("projection");
+                AddUniform("lightPos");
                 glUseProgram(0);
             }
         }

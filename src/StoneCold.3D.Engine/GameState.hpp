@@ -7,6 +7,7 @@
 
 #include "Settings.hpp"
 #include "EngineCore.hpp"
+#include "RenderSystemMap.hpp"
 #include "RenderSystemDefault.hpp"
 #include "RenderSystemInstanced.hpp"
 #include "TransformationSystem.hpp"
@@ -44,6 +45,7 @@ private:
 	std::vector<entityId> _mapTiles;
 	glm::mat4 _projection;
 	// System ptrs for fast access
+    std::shared_ptr<RenderSystemMap> _renderSystemMap;
     std::shared_ptr<RenderSystemDefault> _renderSystemDefault;
     std::shared_ptr<RenderSystemInstanced> _renderSystemInstanced;
 	std::shared_ptr<TransformationSystem> _transformationSystem;
