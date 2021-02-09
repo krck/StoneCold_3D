@@ -30,15 +30,17 @@ namespace StoneCold::Base {
 	};
 
 	//
-	// All the available Level Types
-	// (Maybe replace with a runtime-check of which Map-Textures are available)
+	// All the available Map-Texture Types
 	//
-	enum class LevelType {
-		Grassland,
-		Desert,
-		Castle,
-		Highlands,
-		Arctic
+	enum class MapTextureType {
+		GrassLight,
+		Grass,
+		Sand,
+		Ice,
+		Dirt,
+        Rock,
+        SandLight,
+        Snow
 	};
 
 	//
@@ -85,16 +87,6 @@ namespace StoneCold::Base {
 		MOVE_IN,
 		MOVE_OUT,
 		ATTACK
-	};
-
-	//
-	// MapTiles used by the Random Map Generator
-	// These TileTypes will be mapped to a part of the Level-Texture
-	//
-	enum class MapTileTypes {
-		Placeholder,
-		Empty,
-		Block
 	};
 
 	//

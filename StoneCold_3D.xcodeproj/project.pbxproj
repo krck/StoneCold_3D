@@ -42,6 +42,7 @@
 /* Begin PBXFileReference section */
 		D017A50525B3244E00DEED6D /* ShaderInstanced.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShaderInstanced.hpp; sourceTree = "<group>"; };
 		D017A50625B3264500DEED6D /* RenderSystemInstanced.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RenderSystemInstanced.hpp; sourceTree = "<group>"; };
+		D0209B7A25D3E8B900191470 /* StaticMapResources.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StaticMapResources.hpp; sourceTree = "<group>"; };
 		D02169CE25B23401001B0C1F /* MeshResource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MeshResource.hpp; sourceTree = "<group>"; };
 		D02169CF25B23401001B0C1F /* ResourceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResourceManager.cpp; sourceTree = "<group>"; };
 		D02169D025B23401001B0C1F /* ResourceManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ResourceManager.hpp; sourceTree = "<group>"; };
@@ -444,6 +445,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D0209B7B25D3E8CC00191470 /* StaticResources */ = {
+			isa = PBXGroup;
+			children = (
+				D0209B7A25D3E8B900191470 /* StaticMapResources.hpp */,
+			);
+			name = StaticResources;
+			sourceTree = "<group>";
+		};
 		D02169BB25B22EF0001B0C1F /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1105,6 +1114,7 @@
 		D0A2F59625B212430097A121 /* StoneCold.3D.Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D0209B7B25D3E8CC00191470 /* StaticResources */,
 				D02169EA25B23442001B0C1F /* Managers */,
 				D02169EB25B23459001B0C1F /* Resources */,
 				D0A2F59B25B212430097A121 /* stb_image.h */,

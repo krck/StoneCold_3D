@@ -56,6 +56,13 @@ namespace StoneCold::Resources {
 		//
 		template<typename T>
 		T* LoadResource(ResourceLifeTime resourceLifeTime, const std::string& name);
+        
+        //
+        // Add any existing Resource based on its Type
+        // Ensures that Resources are loaded only once
+        //
+        template<typename T>
+        T* AddResource(ResourceLifeTime resourceLifeTime, const std::string& name, T&& resource);
 
 		//
 		// Unload (cleanup) all Resources of a specific LifeTime

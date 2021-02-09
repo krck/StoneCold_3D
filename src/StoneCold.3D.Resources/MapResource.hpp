@@ -22,11 +22,11 @@ namespace StoneCold::Resources {
     //
     class MapResource : public Resource {
     public:
-        const std::vector<VertexMapCube> Vertices;
+        const std::vector<MapVertex> Vertices;
         const std::vector<uint32> Indices;
 
     public:
-        MapResource(const std::string& name, const std::vector<VertexMapCube>& vertices, const std::vector<uint32>& indices)
+        MapResource(const std::string& name, const std::vector<MapVertex>& vertices, const std::vector<uint32>& indices)
             : Resource(name), Vertices(vertices), Indices(indices), _vao(0), _vbo(0), _ebo(0) {
             // Create the buffers
             glGenVertexArrays(1, &_vao);
@@ -35,13 +35,13 @@ namespace StoneCold::Resources {
             // Load data into the vertex buffer
             glBindVertexArray(_vao);
             glBindBuffer(GL_ARRAY_BUFFER, _vbo);
-            glBufferData(GL_ARRAY_BUFFER, (sizeof(VertexMapCube) * Vertices.size()), &Vertices[0], GL_STATIC_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, (sizeof(MapVertex) * Vertices.size()), &Vertices[0], GL_STATIC_DRAW);
             // Set the vertex attribute pointers
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexMapCube), (GLvoid*)0);
+            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(MapVertex), (GLvoid*)0);
             glEnableVertexAttribArray(0);
-            glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexMapCube), (GLvoid*)offsetof(VertexMapCube, TextureCoords));
+            glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(MapVertex), (GLvoid*)offsetof(MapVertex, TextureCoords));
             glEnableVertexAttribArray(1);
-            glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(VertexMapCube), (GLvoid*)offsetof(VertexMapCube, DiffuseLight));
+            glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(MapVertex), (GLvoid*)offsetof(MapVertex, DiffuseLight));
             glEnableVertexAttribArray(2);
             glBindBuffer(GL_ARRAY_BUFFER, 0);
             // Load data into the index buffer

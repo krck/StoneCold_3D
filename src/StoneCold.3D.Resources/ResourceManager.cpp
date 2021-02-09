@@ -66,6 +66,23 @@ T* ResourceManager::LoadResource(ResourceLifeTime resourceLifeTime, const std::s
 }
 
 
+template<typename T>
+T* ResourceManager::AddResource(ResourceLifeTime resourceLifeTime, const std::string& name, T&& resource) {
+    try {
+        // Load each ressource only once
+        if (!IsResourceLoaded(name)) {
+            T res = std::move(resource);
+            _resources.insert({ name, std::make_shared<T>(res) });
+            _resouceLifetimes[resourceLifeTime].push_back(name);
+        }
+        return static_cast<T*>(_resources[name].get());
+    }
+    catch (std::exception ex) {
+        throw GameException("Error on adding Resource: " + name + "\n" + ex.what());
+    }
+}
+
+
 void ResourceManager::UnloadResources(ResourceLifeTime resourceLifeTime) {
     // Remove all Resources that are mapped to the specific lifetime
     const auto& keys = _resouceLifetimes[resourceLifeTime];
@@ -302,3 +319,9 @@ uint32 ResourceManager::ProcessAssimpTexture(aiMaterial* material, const std::st
 template MeshResource* ResourceManager::LoadResource<MeshResource>(ResourceLifeTime resourceLifeTime, const std::string& name);
 template ModelResource* ResourceManager::LoadResource<ModelResource>(ResourceLifeTime resourceLifeTime, const std::string& name);
 template TextureResource* ResourceManager::LoadResource<TextureResource>(ResourceLifeTime resourceLifeTime, const std::string& name);
+template MapResource* ResourceManager::LoadResource<MapResource>(ResourceLifeTime resourceLifeTime, const std::string& name);
+
+template MeshResource* ResourceManager::AddResource<MeshResource>(ResourceLifeTime resourceLifeTime, const std::string& name, MeshResource&& resource);
+template ModelResource* ResourceManager::AddResource<ModelResource>(ResourceLifeTime resourceLifeTime, const std::string& name, ModelResource&& resource);
+template TextureResource* ResourceManager::AddResource<TextureResource>(ResourceLifeTime resourceLifeTime, const std::string& name, TextureResource&& resource);
+template MapResource* ResourceManager::AddResource<MapResource>(ResourceLifeTime resourceLifeTime, const std::string& name, MapResource&& resource);

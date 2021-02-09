@@ -15,9 +15,10 @@
 #include "Types.hpp"
 #include "Enums.hpp"
 #include "HelperClasses.hpp"
+#include "StaticMapResources.hpp"
 #include "Settings.hpp"
 
-namespace StoneCold::Game {
+namespace StoneCold::Resources {
 
 	using namespace StoneCold::Base;
 
@@ -25,42 +26,12 @@ namespace StoneCold::Game {
 	// Procedural Map Generator
 	//
 	class MapManager {
-
-        // High Mointains
-        struct PerlinPreset {
-            //// Plain
-//            const float FREQUENT = 2;
-//            const float AMPLITUDE = 2;
-//            const float PERSISTENCE = 1;
-//            const unsigned OCTAVES = 1;
-            //
-            //// Lowlands
-//            const float FREQUENT = 3;
-//            const float AMPLITUDE = 3;
-//            const float PERSISTENCE = 2;
-//            const unsigned OCTAVES = 2;
-            //
-            //// Highlands
-            const float FREQUENT = 4;
-            const float AMPLITUDE = 4.5;
-            const float PERSISTENCE = 2.5;
-            const unsigned OCTAVES = 3;
-            //
-            //// Mointains
-//            const float FREQUENT = 10;
-//            const float AMPLITUDE = 20;
-//            const float PERSISTENCE = 0.5;
-//            const unsigned OCTAVES = 5;
-
-        };
-
-        
 	public:
 		MapManager() { }
 		MapManager(const MapManager&) = delete;
 		MapManager& operator=(const MapManager&) = delete;
 
-		std::vector<MapMesh> GenerateMap(LevelType type, const glm::ivec2& mapSize, float samples, float heightRange);
+		std::vector<ChunkMesh> GenerateMap(const glm::ivec2& mapSize, const PerlinPreset& mapPreset, const glm::vec3& lightColor);
 
 		~MapManager() = default;
 
@@ -68,12 +39,8 @@ namespace StoneCold::Game {
         //
         // Perlin n shit
         //
-        void GeneratePerlinNoiseMap(const glm::ivec2& mapSize, std::vector<std::vector<float>>& heights, const PerlinPreset& preset) const;
-        float GetPerlin2D(const float& x, const float& y, float frequent, float amplitude, float persistance, uint32 octaves) const;
-        
-        void AddMapVertexData(const MapMeshFace& face, float x, float y, float z, std::vector<MapMeshFace>& mapVertecies) const;
-        MapMeshFace GetMapMeshFace(CubeFace face) const;
-        
+        void GeneratePerlinNoiseMap(const glm::ivec2& mapSize, const PerlinPreset& preset, std::vector<std::vector<float>>& out_heights) const;
+        void GetCubeFaceMesh(CubeFace face, float world_X, float world_Y, float world_Z, std::vector<CubeFaceMesh>& out_fullMapMesh) const;
 	};
 
 }
